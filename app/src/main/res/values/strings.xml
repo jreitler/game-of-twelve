@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">GameOfTwelve</string>
+    <string name="app_name">12er-Spiel</string>
+    <string name="undo">Rückgängig</string>
+    <string name="nextPlayer">Nächster Spieler</string>
+    <string name="overview">Übersicht</string>
+    <string name="load_game">Letztes Spiel laden</string>
+    <string name="create_new_game">Neues Spiel erstellen</string>
+    <string name="start_game">Spiel starten</string>
+    <string name="create_user">Spieler erstellen</string>
 </resources>

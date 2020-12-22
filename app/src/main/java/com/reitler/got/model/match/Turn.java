@@ -73,26 +73,31 @@ public class Turn {
         return this.scoreData;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
     private class Action {
 
         int score;
         int count;
 
-        private Action(int score, int count){
+        private Action(int score, int count) {
             this.score = score;
             this.count = count;
         }
 
-        private void apply(){
-            for(int i = 0; i < count; i++){
+        private void apply() {
+            for (int i = 0; i < count; i++) {
                 scoreData.score(score);
             }
         }
 
-        private void revert(){
-            for(int i = 0; i < count; i++){
+        private void revert() {
+            for (int i = 0; i < count; i++) {
                 scoreData.decrease(score);
             }
         }
     }
+
 }
