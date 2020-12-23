@@ -1,7 +1,4 @@
-package com.reitler.got.model;
-
-import com.reitler.got.model.data.Player;
-import com.reitler.got.model.data.ScoreData;
+package com.reitler.got.model.match;
 
 import java.util.LinkedList;
 import java.util.List;

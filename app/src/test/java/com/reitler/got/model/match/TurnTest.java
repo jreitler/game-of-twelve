@@ -1,7 +1,10 @@
-package com.reitler.got.model;
+package com.reitler.got.model.match;
 
-import com.reitler.got.model.data.Player;
-import com.reitler.got.model.data.ScoreData;
+import com.reitler.got.model.data.entity.PlayerEntity;
+import com.reitler.got.model.data.entity.ScoreDataEntity;
+import com.reitler.got.model.match.Player;
+import com.reitler.got.model.match.ScoreData;
+import com.reitler.got.model.match.Turn;
 
 import org.junit.After;
 import org.junit.Before;
@@ -19,8 +22,10 @@ public class TurnTest {
 
     @Before
     public void setUp(){
-        p = new Player("player1");
-        data = new ScoreData();
+        PlayerEntity pEntity1 = new PlayerEntity();
+        pEntity1.setName("player1");
+        p = new Player(pEntity1);
+        data = new ScoreData(new ScoreDataEntity());
         t= new Turn(p, data);
     }
 

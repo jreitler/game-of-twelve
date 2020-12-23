@@ -1,20 +1,37 @@
-package com.reitler.got.model;
+package com.reitler.got.model.match;
 
-import com.reitler.got.model.data.Player;
+import android.content.Context;
+
+import androidx.room.Room;
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import com.reitler.got.model.data.access.MatchDatabase;
+import com.reitler.got.model.data.entity.PlayerEntity;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-public class MatchTest {
+@RunWith(AndroidJUnit4.class)
+public class MatchIntTest {
 
     @Test
     public void testMatch(){
-        Player p1 = new Player("player1");
-        Player p2 = new Player("player2");
+        Context context = ApplicationProvider.getApplicationContext();
+        MatchDatabase db = Room.inMemoryDatabaseBuilder(context, MatchDatabase.class).build();
 
-        Match m = new Match();
+        MatchDataManager dataManager = new MatchDataManager(db);
+
+        PlayerEntity pEntity1 = dataManager.createPlayerEntity("player1");
+        Player p1 = new Player(pEntity1);
+
+        PlayerEntity pEntity2 = dataManager.createPlayerEntity("player2");
+        Player p2 = new Player(pEntity2);
+
+        Match m = new Match(dataManager);
 
         m.addPlayer(p1);
         m.addPlayer(p2);
