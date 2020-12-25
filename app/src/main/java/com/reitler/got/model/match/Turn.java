@@ -69,6 +69,10 @@ public class Turn {
         return true;
     }
 
+    public ScoreData getScoreData(){
+        return this.scoreData;
+    }
+
     private class Action {
 
         int score;

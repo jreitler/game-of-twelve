@@ -30,6 +30,10 @@ public class Match {
     }
 
     public void addPlayer(Player player) {
+        if(this.entity.getStartDate() != null){
+            // don't allow to add players after match started
+            return;
+        }
         this.playerList.add(player);
         ScoreDataEntity entity = dataManager.createScoreDataEntity(this.entity.getMatchId(), player.getId());
         this.matchData.put(player, new ScoreData(entity));
