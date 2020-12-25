@@ -18,7 +18,7 @@ public class MatchEntity {
 
     @ColumnInfo(name = "start_date")
     private Date startDate;
-    
+
     public void setMatchId(long matchId){
         this.matchId = matchId;
     }

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "19b3cd99f5d51b76087d89aaa5447feb",
+    "identityHash": "8ffbf91a7a2317d566bcf208b4f6a12e",
     "entities": [
       {
         "tableName": "t_match",
@@ -73,7 +73,7 @@
       },
       {
         "tableName": "t_score_data",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`score_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `fk_player_id` INTEGER NOT NULL, `fk_match_id` INTEGER NOT NULL, `player_order` INTEGER NOT NULL, `score1` INTEGER NOT NULL, `score2` INTEGER NOT NULL, `score3` INTEGER NOT NULL, `score4` INTEGER NOT NULL, `score5` INTEGER NOT NULL, `score6` INTEGER NOT NULL, `score7` INTEGER NOT NULL, `score8` INTEGER NOT NULL, `score9` INTEGER NOT NULL, `score10` INTEGER NOT NULL, `score11` INTEGER NOT NULL, `score12` INTEGER NOT NULL, FOREIGN KEY(`fk_player_id`) REFERENCES `t_player`(`player_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`fk_match_id`) REFERENCES `t_match`(`match_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`score_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `fk_player_id` INTEGER NOT NULL, `fk_match_id` INTEGER NOT NULL, `player_order` INTEGER NOT NULL, `score1` INTEGER NOT NULL, `score2` INTEGER NOT NULL, `score3` INTEGER NOT NULL, `score4` INTEGER NOT NULL, `score5` INTEGER NOT NULL, `score6` INTEGER NOT NULL, `score7` INTEGER NOT NULL, `score8` INTEGER NOT NULL, `score9` INTEGER NOT NULL, `score10` INTEGER NOT NULL, `score11` INTEGER NOT NULL, `score12` INTEGER NOT NULL, FOREIGN KEY(`fk_player_id`) REFERENCES `t_player`(`player_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`fk_match_id`) REFERENCES `t_match`(`match_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -210,7 +210,7 @@
           },
           {
             "table": "t_match",
-            "onDelete": "NO ACTION",
+            "onDelete": "CASCADE",
             "onUpdate": "NO ACTION",
             "columns": [
               "fk_match_id"
@@ -225,7 +225,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '19b3cd99f5d51b76087d89aaa5447feb')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8ffbf91a7a2317d566bcf208b4f6a12e')"
     ]
   }
 }

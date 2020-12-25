@@ -27,7 +27,10 @@ public class MatchViewModel extends AndroidViewModel {
     private MutableLiveData<Match> match = new MutableLiveData<>();
     private MutableLiveData<Turn> turn = new MutableLiveData<>();
     private List<MutableLiveData<Integer>> scores = new ArrayList<>();
+    private MutableLiveData<Boolean> finished = new MutableLiveData<>();
+    private MutableLiveData<Integer> activeNumber = new MutableLiveData<>();
     private ExecutorService executor;
+    private Match mMatch;
 
     public MatchViewModel(@NonNull Application application) {
         super(application);
@@ -43,16 +46,16 @@ public class MatchViewModel extends AndroidViewModel {
 
     private void loadGame() {
         executor.execute(() -> {
-            Match match = dataManager.getOpenMatch();
-            this.match.postValue(match);
-            mTurn = match.start();
+            this.mMatch = dataManager.getOpenMatch();
+            this.match.postValue(mMatch);
+            mTurn = mMatch.start();
             this.turn.postValue(mTurn);
             updateScores();
         });
     }
 
-    public LiveData<Match> getMatch() {
-        return this.match;
+    public LiveData<Boolean> isFinished(){
+        return finished;
     }
 
     public LiveData<Turn> getTurn() {
@@ -126,5 +129,11 @@ public class MatchViewModel extends AndroidViewModel {
         for (int i = 1; i <= 12; i++) {
             this.scores.get(i - 1).postValue(mTurn.getScoreData().get(i));
         }
+        this.activeNumber.postValue(mTurn.getActiveNumber());
+        this.finished.postValue(mMatch.isFinished());
+    }
+
+    public LiveData<Integer> getActiveNumber() {
+        return this.activeNumber;
     }
 }

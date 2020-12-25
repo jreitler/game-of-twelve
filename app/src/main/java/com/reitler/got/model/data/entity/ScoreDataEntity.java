@@ -1,6 +1,7 @@
 package com.reitler.got.model.data.entity;
 
 import androidx.room.ColumnInfo;
+import androidx.room.Delete;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
@@ -8,7 +9,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "t_score_data",
         foreignKeys = {
                 @ForeignKey(entity = PlayerEntity.class, parentColumns = "player_id", childColumns = "fk_player_id"),
-                @ForeignKey(entity = MatchEntity.class, parentColumns = "match_id", childColumns = "fk_match_id")
+                @ForeignKey(entity = MatchEntity.class, parentColumns = "match_id", childColumns = "fk_match_id", onDelete = ForeignKey.CASCADE)
         })
 public class ScoreDataEntity {
 

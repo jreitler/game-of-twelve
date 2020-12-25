@@ -80,6 +80,10 @@ public class Turn {
         return player;
     }
 
+    public Integer getActiveNumber() {
+        return this.activeNumber;
+    }
+
     private class Action {
 
         int score;

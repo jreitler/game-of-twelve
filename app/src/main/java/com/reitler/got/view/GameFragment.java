@@ -13,127 +13,18 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.reitler.got.R;
-import com.reitler.got.model.match.Match;
 import com.reitler.got.model.match.Turn;
 import com.reitler.got.vm.MatchViewModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class GameFragment extends Fragment {
-    View.OnClickListener buttonClickListener;
-    View.OnLongClickListener longClickListener;
+
     private MatchViewModel viewModel;
 
-    public GameFragment() {
-        buttonClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View button) {
-                if (getViewModel().getTurn().getValue() == null) {
-                    return;
-                }
-                switch (button.getId()) {
-                    case R.id.button_1:
-                        getViewModel().addScore(1);
-                        break;
-                    case R.id.button_2:
-                        getViewModel().addScore(2);
-                        break;
-                    case R.id.button_3:
-                        getViewModel().addScore(3);
-                        break;
-                    case R.id.button_4:
-                        getViewModel().addScore(4);
-                        break;
-                    case R.id.button_5:
-                        getViewModel().addScore(5);
-                        break;
-                    case R.id.button_6:
-                        getViewModel().addScore(6);
-                        break;
-                    case R.id.button_7:
-                        getViewModel().addScore(7);
-                        break;
-                    case R.id.button_8:
-                        getViewModel().addScore(8);
-                        break;
-                    case R.id.button_9:
-                        getViewModel().addScore(9);
-                        break;
-                    case R.id.button_10:
-                        getViewModel().addScore(10);
-                        break;
-                    case R.id.button_11:
-                        getViewModel().addScore(11);
-                        break;
-                    case R.id.button_12:
-                        getViewModel().addScore(12);
-                        break;
-                    default:
-                        ;
-                }
-                ;
-            }
-        };
-
-        longClickListener = new View.OnLongClickListener() {
-            //boolean to indicate whether you have consumed the event
-            @Override
-            public boolean onLongClick(View button) {
-                if (getViewModel().getTurn().getValue() == null) {
-                    //Event can't be consumend
-                    return false;
-                }
-                //TODO: "Fill up" scores
-                switch (button.getId()) {
-                    case R.id.button_1:
-                        getViewModel().completeScore(1);
-                        break;
-                    case R.id.button_2:
-                        getViewModel().completeScore(2);
-                        break;
-                    case R.id.button_3:
-                        getViewModel().completeScore(3);
-                        break;
-                    case R.id.button_4:
-                        getViewModel().completeScore(4);
-                        break;
-                    case R.id.button_5:
-                        getViewModel().completeScore(5);
-                        break;
-                    case R.id.button_6:
-                        getViewModel().completeScore(6);
-                        break;
-                    case R.id.button_7:
-                        getViewModel().completeScore(7);
-                        break;
-                    case R.id.button_8:
-                        getViewModel().completeScore(8);
-                        break;
-                    case R.id.button_9:
-                        getViewModel().completeScore(9);
-                        break;
-                    case R.id.button_10:
-                        getViewModel().completeScore(10);
-                        break;
-                    case R.id.button_11:
-                        getViewModel().completeScore(11);
-                        break;
-                    case R.id.button_12:
-                        getViewModel().completeScore(12);
-                        break;
-                    default:
-                        ;
-                }
-                return true;
-            }
-        };
-
-    }
-
-    public static GameFragment newInstance(String param1, String param2) {
-        GameFragment fragment = new GameFragment();
-        Bundle args = new Bundle();
-        return fragment;
-    }
+    private List<Button> buttons = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -148,34 +39,30 @@ public class GameFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_game, container, false);
     }
 
-
+    @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        view.findViewById(R.id.button_1).setOnClickListener(buttonClickListener);
-        view.findViewById(R.id.button_2).setOnClickListener(buttonClickListener);
-        view.findViewById(R.id.button_3).setOnClickListener(buttonClickListener);
-        view.findViewById(R.id.button_4).setOnClickListener(buttonClickListener);
-        view.findViewById(R.id.button_5).setOnClickListener(buttonClickListener);
-        view.findViewById(R.id.button_6).setOnClickListener(buttonClickListener);
-        view.findViewById(R.id.button_7).setOnClickListener(buttonClickListener);
-        view.findViewById(R.id.button_8).setOnClickListener(buttonClickListener);
-        view.findViewById(R.id.button_9).setOnClickListener(buttonClickListener);
-        view.findViewById(R.id.button_10).setOnClickListener(buttonClickListener);
-        view.findViewById(R.id.button_11).setOnClickListener(buttonClickListener);
-        view.findViewById(R.id.button_12).setOnClickListener(buttonClickListener);
 
-        view.findViewById(R.id.button_1).setOnLongClickListener(longClickListener);
-        view.findViewById(R.id.button_2).setOnLongClickListener(longClickListener);
-        view.findViewById(R.id.button_3).setOnLongClickListener(longClickListener);
-        view.findViewById(R.id.button_4).setOnLongClickListener(longClickListener);
-        view.findViewById(R.id.button_5).setOnLongClickListener(longClickListener);
-        view.findViewById(R.id.button_6).setOnLongClickListener(longClickListener);
-        view.findViewById(R.id.button_7).setOnLongClickListener(longClickListener);
-        view.findViewById(R.id.button_8).setOnLongClickListener(longClickListener);
-        view.findViewById(R.id.button_9).setOnLongClickListener(longClickListener);
-        view.findViewById(R.id.button_10).setOnLongClickListener(longClickListener);
-        view.findViewById(R.id.button_11).setOnLongClickListener(longClickListener);
-        view.findViewById(R.id.button_12).setOnLongClickListener(longClickListener);
+        this.buttons.add((Button) view.findViewById(R.id.button_1));
+        this.buttons.add((Button) view.findViewById(R.id.button_2));
+        this.buttons.add((Button) view.findViewById(R.id.button_3));
+        this.buttons.add((Button) view.findViewById(R.id.button_4));
+        this.buttons.add((Button) view.findViewById(R.id.button_5));
+        this.buttons.add((Button) view.findViewById(R.id.button_6));
+        this.buttons.add((Button) view.findViewById(R.id.button_7));
+        this.buttons.add((Button) view.findViewById(R.id.button_8));
+        this.buttons.add((Button) view.findViewById(R.id.button_9));
+        this.buttons.add((Button) view.findViewById(R.id.button_10));
+        this.buttons.add((Button) view.findViewById(R.id.button_11));
+        this.buttons.add((Button) view.findViewById(R.id.button_12));
+
+        for (int i = 1; i <= 12; i++) {
+            Button button = this.buttons.get(i - 1);
+            button.setOnClickListener(createOnClickListener(i));
+            button.setOnLongClickListener(createOnLongClickListener(i));
+            viewModel.getScore(i).observe(getViewLifecycleOwner(),
+                    createButtonObserver(button, i));
+        }
 
         view.findViewById(R.id.button_undo).setOnClickListener(v -> getViewModel().revert());
 
@@ -187,35 +74,24 @@ public class GameFragment extends Fragment {
             }
         });
 
-        viewModel.getScore(1).observe(getViewLifecycleOwner(),
-                createButtonObserver((Button) view.findViewById(R.id.button_1), getString(R.string.button_1_caption_template)));
-        viewModel.getScore(2).observe(getViewLifecycleOwner(),
-                createButtonObserver((Button) view.findViewById(R.id.button_2), getString(R.string.button_2_caption_template)));
-        viewModel.getScore(3).observe(getViewLifecycleOwner(),
-                createButtonObserver((Button) view.findViewById(R.id.button_3), getString(R.string.button_3_caption_template)));
-        viewModel.getScore(4).observe(getViewLifecycleOwner(),
-                createButtonObserver((Button) view.findViewById(R.id.button_4), getString(R.string.button_4_caption_template)));
-        viewModel.getScore(5).observe(getViewLifecycleOwner(),
-                createButtonObserver((Button) view.findViewById(R.id.button_5), getString(R.string.button_5_caption_template)));
-        viewModel.getScore(6).observe(getViewLifecycleOwner(),
-                createButtonObserver((Button) view.findViewById(R.id.button_6), getString(R.string.button_6_caption_template)));
-        viewModel.getScore(7).observe(getViewLifecycleOwner(),
-                createButtonObserver((Button) view.findViewById(R.id.button_7), getString(R.string.button_7_caption_template)));
-        viewModel.getScore(8).observe(getViewLifecycleOwner(),
-                createButtonObserver((Button) view.findViewById(R.id.button_8), getString(R.string.button_8_caption_template)));
-        viewModel.getScore(9).observe(getViewLifecycleOwner(),
-                createButtonObserver((Button) view.findViewById(R.id.button_9), getString(R.string.button_9_caption_template)));
-        viewModel.getScore(10).observe(getViewLifecycleOwner(),
-                createButtonObserver((Button) view.findViewById(R.id.button_10), getString(R.string.button_10_caption_template)));
-        viewModel.getScore(11).observe(getViewLifecycleOwner(),
-                createButtonObserver((Button) view.findViewById(R.id.button_11), getString(R.string.button_11_caption_template)));
-        viewModel.getScore(12).observe(getViewLifecycleOwner(),
-                createButtonObserver((Button) view.findViewById(R.id.button_12), getString(R.string.button_12_caption_template)));
 
         view.findViewById(R.id.button_nextPlayer).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewModel.nextPlayer();
+            }
+        });
+
+        viewModel.getActiveNumber().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                if (integer == null) {
+                    buttons.forEach(b -> b.setEnabled(true));
+                } else {
+                    for (int i = 1; i <= 12; i++) {
+                        buttons.get(i - 1).setEnabled(i == integer.intValue());
+                    }
+                }
             }
         });
 
@@ -225,12 +101,31 @@ public class GameFragment extends Fragment {
         return viewModel;
     }
 
-    private Observer<Integer> createButtonObserver(Button button, String headerTemplate) {
+    private View.OnClickListener createOnClickListener(int index){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.addScore(index);
+            }
+        };
+    }
+
+    private View.OnLongClickListener createOnLongClickListener(int index){
+        return new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                viewModel.completeScore(index);
+                return true;
+            }
+        };
+    }
+
+    private Observer<Integer> createButtonObserver(Button button, int index) {
         return new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
                 int value = integer != null ? integer.intValue() : 0;
-                button.setText(String.format(headerTemplate, value));
+                button.setText(String.format("%2d (%d)", index, value));
             }
         };
     }
