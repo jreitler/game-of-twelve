@@ -58,6 +58,50 @@ public class ScoreData {
         }
     }
 
+    public void decrease(int pos){
+        switch (pos) {
+            case 1:
+                entity.setScore1(entity.getScore1() - 1);
+                break;
+            case 2:
+                entity.setScore2(entity.getScore2() - 1);
+                break;
+            case 3:
+                entity.setScore3(entity.getScore3() - 1);
+                break;
+            case 4:
+                entity.setScore4(entity.getScore4() - 1);
+                break;
+            case 5:
+                entity.setScore5(entity.getScore5() - 1);
+                break;
+            case 6:
+                entity.setScore6(entity.getScore6() - 1);
+                break;
+            case 7:
+                entity.setScore7(entity.getScore7() - 1);
+                break;
+            case 8:
+                entity.setScore8(entity.getScore8() - 1);
+                break;
+            case 9:
+                entity.setScore9(entity.getScore9() - 1);
+                break;
+            case 10:
+                entity.setScore10(entity.getScore10() - 1);
+                break;
+            case 11:
+                entity.setScore11(entity.getScore11() - 1);
+                break;
+            case 12:
+                entity.setScore12(entity.getScore12() - 1);
+                break;
+            default:
+                // error?
+                break;
+        }
+    }
+
     public int get(int pos) {
         switch (pos) {
             case 1:

@@ -42,11 +42,9 @@ public class TurnTest {
 
         for(int i = 1; i < 10; i++){
             for(int j = 0; j < 5; j++){
-                t.score(i);
+                t.singleScore(i);
             }
         }
-
-        t.finish();
 
         assertFalse(t.isCompleted());
         assertEquals(5, data.get(1));
@@ -69,25 +67,25 @@ public class TurnTest {
 
         for (int i = 1; i <= 12; i++) {
             for (int j = 0; j < 5; j++) {
-                t.score(i);
+                t.singleScore(i);
             }
         }
-        t.finish();
+
         assertTrue(t.isCompleted());
     }
 
     @Test
-    public void testTurnRevert(){
+    public void testTurnRevertSingleScores(){
 
         assertFalse(t.isCompleted());
 
         for (int i = 1; i <= 12; i++) {
             for (int j = 0; j < 5; j++) {
-                t.score(i);
+                t.singleScore(i);
             }
         }
         t.revertLast();
-        t.finish();
+
         assertFalse(t.isCompleted());
         assertEquals(5, data.get(1));
         assertEquals(5, data.get(2));
@@ -105,10 +103,10 @@ public class TurnTest {
 
     @Test
     public void testInvalidScore(){
-        t.score(1);
-        t.score(1);
-        t.score(2);
-        t.finish();
+        t.singleScore(1);
+        t.singleScore(1);
+        t.singleScore(2);
+
         assertEquals(2, data.get(1));
         assertEquals(0, data.get(2));
     }
@@ -116,9 +114,34 @@ public class TurnTest {
     @Test
     public void testInvalidScoreTooManyInvocations(){
         for(int i = 0; i < 6; i++){
-            t.score(1);
+            t.singleScore(1);
         }
-        t.finish();
+
         assertEquals(5, data.get(1));
     }
+
+    @Test
+    public void testCompleteScores(){
+        t.complete(6);
+        assertEquals(5, data.get(6));
+
+        t.singleScore(7);
+        t.singleScore(7);
+        assertEquals(2, data.get(7));
+        t.complete(7);
+        assertEquals(5, data.get(7));
+    }
+
+    @Test
+    public void testRevertCompleteScores(){
+        t.singleScore(7);
+        t.singleScore(7);
+        assertEquals(2, data.get(7));
+        t.complete(7);
+        assertEquals(5, data.get(7));
+
+        t.revertLast();
+        assertEquals(2, data.get(7));
+    }
+
 }

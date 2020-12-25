@@ -98,7 +98,7 @@ public class MatchTest {
 
     private void score(Turn t, int nr, int count){
         for(int i = 0; i < count; i ++){
-            t.score(nr);
+            t.singleScore(nr);
         }
     }
 }

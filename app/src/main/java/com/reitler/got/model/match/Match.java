@@ -46,8 +46,6 @@ public class Match {
         if (turn != null) {
             if (this.turn.isCompleted())
                 this.finalRound = true;
-
-            turn.finish();
         }
         if (isLastPlayer()) {
             if (this.finalRound) {
