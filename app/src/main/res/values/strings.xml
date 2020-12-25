@@ -7,4 +7,18 @@
     <string name="create_new_game">Neues Spiel erstellen</string>
     <string name="start_game">Spiel starten</string>
     <string name="create_user">Spieler erstellen</string>
+
+    <string name="button_1_caption_template"> 1 (%s)</string>
+    <string name="button_2_caption_template"> 2 (%s)</string>
+    <string name="button_3_caption_template"> 3 (%s)</string>
+    <string name="button_4_caption_template"> 4 (%s)</string>
+    <string name="button_5_caption_template"> 5 (%s)</string>
+    <string name="button_6_caption_template"> 6 (%s)</string>
+    <string name="button_7_caption_template"> 7 (%s)</string>
+    <string name="button_8_caption_template"> 8 (%s)</string>
+    <string name="button_9_caption_template"> 9 (%s)</string>
+    <string name="button_10_caption_template">10 (%s)</string>
+    <string name="button_11_caption_template">11 (%s)</string>
+    <string name="button_12_caption_template">12 (%s)</string>
+
 </resources>

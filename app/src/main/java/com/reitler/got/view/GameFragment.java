@@ -4,13 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.reitler.got.R;
+import com.reitler.got.model.match.Turn;
 import com.reitler.got.vm.MatchViewModel;
 
 
@@ -174,14 +177,60 @@ public class GameFragment extends Fragment {
         view.findViewById(R.id.button_11).setOnLongClickListener(longClickListener);
         view.findViewById(R.id.button_12).setOnLongClickListener(longClickListener);
 
-        ((TextView) view.findViewById(R.id.game_playerName)).
-                setText(viewModel.getTurn().getValue().getPlayer().getName());
-
         view.findViewById(R.id.button_undo).setOnClickListener(v -> getViewModel().revert());
 
+        viewModel.getTurn().observe(getViewLifecycleOwner(), new Observer<Turn>() {
+            @Override
+            public void onChanged(Turn turn) {
+                ((TextView) view.findViewById(R.id.game_playerName)).
+                        setText(turn.getPlayer().getName());
+            }
+        });
+
+        viewModel.getScore(1).observe(getViewLifecycleOwner(),
+                createButtonObserver((Button) view.findViewById(R.id.button_1), getString(R.string.button_1_caption_template)));
+        viewModel.getScore(2).observe(getViewLifecycleOwner(),
+                createButtonObserver((Button) view.findViewById(R.id.button_2), getString(R.string.button_2_caption_template)));
+        viewModel.getScore(3).observe(getViewLifecycleOwner(),
+                createButtonObserver((Button) view.findViewById(R.id.button_3), getString(R.string.button_3_caption_template)));
+        viewModel.getScore(4).observe(getViewLifecycleOwner(),
+                createButtonObserver((Button) view.findViewById(R.id.button_4), getString(R.string.button_4_caption_template)));
+        viewModel.getScore(5).observe(getViewLifecycleOwner(),
+                createButtonObserver((Button) view.findViewById(R.id.button_5), getString(R.string.button_5_caption_template)));
+        viewModel.getScore(6).observe(getViewLifecycleOwner(),
+                createButtonObserver((Button) view.findViewById(R.id.button_6), getString(R.string.button_6_caption_template)));
+        viewModel.getScore(7).observe(getViewLifecycleOwner(),
+                createButtonObserver((Button) view.findViewById(R.id.button_7), getString(R.string.button_7_caption_template)));
+        viewModel.getScore(8).observe(getViewLifecycleOwner(),
+                createButtonObserver((Button) view.findViewById(R.id.button_8), getString(R.string.button_8_caption_template)));
+        viewModel.getScore(9).observe(getViewLifecycleOwner(),
+                createButtonObserver((Button) view.findViewById(R.id.button_9), getString(R.string.button_9_caption_template)));
+        viewModel.getScore(10).observe(getViewLifecycleOwner(),
+                createButtonObserver((Button) view.findViewById(R.id.button_10), getString(R.string.button_10_caption_template)));
+        viewModel.getScore(11).observe(getViewLifecycleOwner(),
+                createButtonObserver((Button) view.findViewById(R.id.button_11), getString(R.string.button_11_caption_template)));
+        viewModel.getScore(12).observe(getViewLifecycleOwner(),
+                createButtonObserver((Button) view.findViewById(R.id.button_12), getString(R.string.button_12_caption_template)));
+
+        view.findViewById(R.id.button_nextPlayer).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.nextPlayer();
+            }
+        });
     }
 
     private MatchViewModel getViewModel() {
         return viewModel;
+    }
+
+    private Observer<Integer> createButtonObserver(Button button, String headerTemplate) {
+        return new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                int value = integer != null ? integer.intValue() : 0;
+                button.setText(String.format(headerTemplate, value));
+            }
+        };
     }
 }
