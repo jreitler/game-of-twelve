@@ -19,6 +19,8 @@ public class ScoreDataEntity {
     private long playerId;
     @ColumnInfo(name = "fk_match_id", index = true)
     private long matchId;
+    @ColumnInfo(name = "player_order")
+    private int order;
 
     private int score1 = 0;
     private int score2 = 0;
@@ -55,6 +57,14 @@ public class ScoreDataEntity {
 
     public long getMatchId() {
         return matchId;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
+    }
+
+    public int getOrder() {
+        return order;
     }
 
     public int getScore1() {

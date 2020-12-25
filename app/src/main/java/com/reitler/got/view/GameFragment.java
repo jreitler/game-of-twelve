@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.reitler.got.R;
+import com.reitler.got.model.match.Match;
 import com.reitler.got.model.match.Turn;
 import com.reitler.got.vm.MatchViewModel;
 
@@ -138,7 +139,6 @@ public class GameFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.viewModel = new ViewModelProvider(this).get(MatchViewModel.class);
-        viewModel.dummyGame();
     }
 
     @Override
@@ -218,6 +218,7 @@ public class GameFragment extends Fragment {
                 viewModel.nextPlayer();
             }
         });
+
     }
 
     private MatchViewModel getViewModel() {

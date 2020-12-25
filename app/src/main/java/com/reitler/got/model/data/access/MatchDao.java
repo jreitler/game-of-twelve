@@ -24,4 +24,10 @@ public interface MatchDao {
 
     @Query("SELECT * from t_match WHERE rowid=:rowId")
     MatchEntity getMatchForRowId(long rowId);
+
+    @Query("SELECT * from t_match WHERE end_date=-1")
+    MatchEntity getOpenMatch();
+
+    @Query("DELETE from t_match WHERE end_date=-1")
+    void deleteOpenMatches();
 }

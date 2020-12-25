@@ -27,6 +27,6 @@ public interface ScoreDataDao {
     @Query("SELECT * from t_score_data WHERE t_score_data.fk_match_id=:matchId")
     List<ScoreDataEntity> getScoresForMatch(long matchId);
 
-    @Query("SELECT * from t_score_data WHERE rowid=:rowId")
+    @Query("SELECT * from t_score_data WHERE rowid=:rowId ORDER BY player_order ASC")
     ScoreDataEntity getScoreForRowId(long rowId);
 }

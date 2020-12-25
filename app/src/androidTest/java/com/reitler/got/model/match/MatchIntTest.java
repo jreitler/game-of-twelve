@@ -23,13 +23,13 @@ public class MatchIntTest {
         Context context = ApplicationProvider.getApplicationContext();
         MatchDatabase db = Room.inMemoryDatabaseBuilder(context, MatchDatabase.class).build();
 
+
         MatchDataManager dataManager = new MatchDataManager(db);
+        PlayerManager playerManager = new PlayerManager(db.getPlayerDao());
 
-        PlayerEntity pEntity1 = dataManager.createPlayerEntity("player1");
-        Player p1 = new Player(pEntity1);
+        Player p1 = playerManager.createPlayer("player1");
 
-        PlayerEntity pEntity2 = dataManager.createPlayerEntity("player2");
-        Player p2 = new Player(pEntity2);
+        Player p2 = playerManager.createPlayer("player2");
 
         Match m = new Match(dataManager);
 
@@ -97,7 +97,7 @@ public class MatchIntTest {
 
     private void score(Turn t, int nr, int count){
         for(int i = 0; i < count; i ++){
-            t.score(nr);
+            t.singleScore(nr);
         }
     }
 }

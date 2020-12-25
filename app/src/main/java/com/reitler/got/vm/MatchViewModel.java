@@ -38,6 +38,17 @@ public class MatchViewModel extends AndroidViewModel {
         }
         this.playerManager = new PlayerManager(matchDataBase.getPlayerDao());
         this.executor = ((GotApplication) application).executorService;
+        loadGame();
+    }
+
+    private void loadGame() {
+        executor.execute(() -> {
+            Match match = dataManager.getOpenMatch();
+            this.match.postValue(match);
+            mTurn = match.start();
+            this.turn.postValue(mTurn);
+            updateScores();
+        });
     }
 
     public LiveData<Match> getMatch() {

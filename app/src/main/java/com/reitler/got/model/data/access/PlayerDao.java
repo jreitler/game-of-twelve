@@ -22,6 +22,9 @@ public interface PlayerDao {
     @Query("SELECT * from t_player")
     List<PlayerEntity> getAllPlayers();
 
+    @Query("SELECT * from t_player WHERE t_player.player_id=:id")
+    PlayerEntity getPlayerForId(long id);
+
     @Query("SELECT * from t_player WHERE t_player.player_name=:name")
     PlayerEntity getPlayerForName(String name);
 

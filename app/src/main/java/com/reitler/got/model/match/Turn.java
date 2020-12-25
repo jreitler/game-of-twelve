@@ -52,6 +52,9 @@ public class Turn {
     }
 
     public void revertLast(){
+        if(history.isEmpty()){
+            return;
+        }
         Action action = this.history.remove(history.size() - 1);
         action.revert();
     }

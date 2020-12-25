@@ -21,12 +21,25 @@ public class Match {
     private MatchEntity entity;
 
     public Match(MatchDataManager dataManager) {
+        this(dataManager, dataManager.createMatchEntity());
+    }
+
+    Match(MatchDataManager dataManager, MatchEntity entity){
         this.dataManager = dataManager;
         this.matchData = new HashMap<>();
         this.playerList = new LinkedList<>();
         this.finished = false;
         this.finalRound = false;
-        this.entity = dataManager.createMatchEntity();  
+        this.entity = entity;
+    }
+
+    /**
+     * Add a player with existing scores. This method should only be used when restoring a match from database
+     */
+    void addPlayer(Player player, ScoreDataEntity scoreDataEntity){
+        this.playerList.add(player);
+        this.matchData.put(player, new ScoreData(scoreDataEntity));
+        saveScores();
     }
 
     public void addPlayer(Player player) {
@@ -34,9 +47,7 @@ public class Match {
             // don't allow to add players after match started
             return;
         }
-        this.playerList.add(player);
-        ScoreDataEntity entity = dataManager.createScoreDataEntity(this.entity.getMatchId(), player.getId());
-        this.matchData.put(player, new ScoreData(entity));
+        addPlayer(player, dataManager.createScoreDataEntity(this.entity.getMatchId(), player.getId(), playerList.size()));
     }
 
     public Turn start() {
@@ -63,6 +74,7 @@ public class Match {
         }
 
         Player p = playerList.get(activePlayer);
+        saveScores();
         this.turn = new Turn(p, matchData.get(p));
         return this.turn;
     }
@@ -71,6 +83,10 @@ public class Match {
         this.entity.setEndDate(new Date());
         dataManager.save(entity);
 
+        saveScores();
+    }
+
+    private void saveScores() {
         for(ScoreData score : this.matchData.values()){
             dataManager.save(score.getEntity());
         }

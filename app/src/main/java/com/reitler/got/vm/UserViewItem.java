@@ -1,11 +1,13 @@
-package com.reitler.got.view;
+package com.reitler.got.vm;
+
+import com.reitler.got.model.match.Player;
 
 public class UserViewItem {
     private boolean checked;
-    private String name;
+    private Player player;
 
-    public UserViewItem(String name){
-        this.name = name;
+    public UserViewItem(Player player){
+        this.player = player;
         this.checked = false;
     }
 
@@ -18,6 +20,10 @@ public class UserViewItem {
     }
 
     public String getName(){
-        return name;
+        return player.getName();
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }
