@@ -27,17 +27,6 @@ public class MatchDataManager {
         return database.getScoreDao().getScoreForRowId(rowId);
     }
 
-    public PlayerEntity createPlayerEntity(String name){
-        PlayerEntity entity = new PlayerEntity();
-        entity.setName(name);
-        long rowId = this.database.getPlayerDao().insert(entity);
-        return database.getPlayerDao().getPlayerForRowId(rowId);
-    }
-
-    public void save(PlayerEntity entity){
-        this.database.getPlayerDao().save(entity);
-    }
-
     public void save(ScoreDataEntity entity){
         this.database.getScoreDao().save(entity);
     }

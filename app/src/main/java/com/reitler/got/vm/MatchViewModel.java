@@ -12,6 +12,7 @@ import com.reitler.got.model.data.access.MatchDatabase;
 import com.reitler.got.model.match.Match;
 import com.reitler.got.model.match.MatchDataManager;
 import com.reitler.got.model.match.Player;
+import com.reitler.got.model.match.PlayerManager;
 import com.reitler.got.model.match.Turn;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import java.util.List;
 public class MatchViewModel extends AndroidViewModel {
 
     private MatchDataManager dataManager;
+    private PlayerManager playerManager;
     private MutableLiveData<Match> match = new MutableLiveData<>();
     private MutableLiveData<Turn> turn = new MutableLiveData<>();
     private List<MutableLiveData<Integer>> scores = new ArrayList<>();
@@ -32,6 +34,7 @@ public class MatchViewModel extends AndroidViewModel {
         for(int i = 0; i < 12; i++){
             scores.add(new MutableLiveData<>(0));
         }
+        this.playerManager = new PlayerManager(matchDataBase.getPlayerDao());
     }
 
     public LiveData<Match> getMatch(){
@@ -44,6 +47,17 @@ public class MatchViewModel extends AndroidViewModel {
 
     public LiveData<Integer> getScore(int number){
         return this.scores.get(number);
+    }
+
+    /**
+     * Used for prototyping, will be removed in future
+     */
+    public void dummyGame(){
+        List<Player> players = new ArrayList<>();
+        players.add(playerManager.getOrCreatePlayerForName("Player1"));
+        players.add(playerManager.getOrCreatePlayerForName("Player2"));
+        players.add(playerManager.getOrCreatePlayerForName("Player3"));
+        newGame(players);
     }
 
     public void newGame(List<Player> players) {
