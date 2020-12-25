@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.room.Room;
 
 import com.reitler.got.GotApplication;
 import com.reitler.got.model.data.access.MatchDatabase;
@@ -18,7 +17,6 @@ import com.reitler.got.model.match.Turn;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 
 public class MatchViewModel extends AndroidViewModel {
