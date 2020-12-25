@@ -1,51 +1,72 @@
 package com.reitler.got.view;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.reitler.got.R;
-import com.reitler.got.model.Match;
-import com.reitler.got.model.Turn;
-import com.reitler.got.model.data.Player;
+import com.reitler.got.vm.MatchViewModel;
+
 
 public class GameFragment extends Fragment {
-    Match match = new Match();
-    Turn turn;
     View.OnClickListener buttonClickListener;
     View.OnLongClickListener longClickListener;
+    private MatchViewModel viewModel;
 
     public GameFragment() {
-        match.addPlayer(new Player("Spieler 1"));
-        match.addPlayer(new Player("Spieler 2"));
-        turn = match.start();
         buttonClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View button) {
-                if(getTurn() == null){
+                if (getViewModel().getTurn().getValue() == null) {
                     return;
                 }
-                switch (button.getId()){
-                    case R.id.button_1: getTurn().score(1); break;
-                    case R.id.button_2: getTurn().score(2); break;
-                    case R.id.button_3: getTurn().score(3); break;
-                    case R.id.button_4: getTurn().score(4); break;
-                    case R.id.button_5: getTurn().score(5); break;
-                    case R.id.button_6: getTurn().score(6); break;
-                    case R.id.button_7: getTurn().score(7); break;
-                    case R.id.button_8: getTurn().score(8); break;
-                    case R.id.button_9: getTurn().score(9); break;
-                    case R.id.button_10: getTurn().score(10); break;
-                    case R.id.button_11: getTurn().score(11); break;
-                    case R.id.button_12: getTurn().score(12); break;
-                    default:;
-                };
+                switch (button.getId()) {
+                    case R.id.button_1:
+                        getViewModel().addScore(1);
+                        break;
+                    case R.id.button_2:
+                        getViewModel().addScore(2);
+                        break;
+                    case R.id.button_3:
+                        getViewModel().addScore(3);
+                        break;
+                    case R.id.button_4:
+                        getViewModel().addScore(4);
+                        break;
+                    case R.id.button_5:
+                        getViewModel().addScore(5);
+                        break;
+                    case R.id.button_6:
+                        getViewModel().addScore(6);
+                        break;
+                    case R.id.button_7:
+                        getViewModel().addScore(7);
+                        break;
+                    case R.id.button_8:
+                        getViewModel().addScore(8);
+                        break;
+                    case R.id.button_9:
+                        getViewModel().addScore(9);
+                        break;
+                    case R.id.button_10:
+                        getViewModel().addScore(10);
+                        break;
+                    case R.id.button_11:
+                        getViewModel().addScore(11);
+                        break;
+                    case R.id.button_12:
+                        getViewModel().addScore(12);
+                        break;
+                    default:
+                        ;
+                }
+                ;
             }
         };
 
@@ -53,25 +74,50 @@ public class GameFragment extends Fragment {
             //boolean to indicate whether you have consumed the event
             @Override
             public boolean onLongClick(View button) {
-                if(getTurn() == null){
+                if (getViewModel().getTurn().getValue() == null) {
                     //Event can't be consumend
                     return false;
                 }
                 //TODO: "Fill up" scores
-                switch (button.getId()){
-                    case R.id.button_1: break;
-                    case R.id.button_2: break;
-                    case R.id.button_3: break;
-                    case R.id.button_4: break;
-                    case R.id.button_5: break;
-                    case R.id.button_6: break;
-                    case R.id.button_7: break;
-                    case R.id.button_8: break;
-                    case R.id.button_9: break;
-                    case R.id.button_10: break;
-                    case R.id.button_11: break;
-                    case R.id.button_12: break;
-                    default:;
+                switch (button.getId()) {
+                    case R.id.button_1:
+                        getViewModel().completeScore(1);
+                        break;
+                    case R.id.button_2:
+                        getViewModel().completeScore(2);
+                        break;
+                    case R.id.button_3:
+                        getViewModel().completeScore(3);
+                        break;
+                    case R.id.button_4:
+                        getViewModel().completeScore(4);
+                        break;
+                    case R.id.button_5:
+                        getViewModel().completeScore(5);
+                        break;
+                    case R.id.button_6:
+                        getViewModel().completeScore(6);
+                        break;
+                    case R.id.button_7:
+                        getViewModel().completeScore(7);
+                        break;
+                    case R.id.button_8:
+                        getViewModel().completeScore(8);
+                        break;
+                    case R.id.button_9:
+                        getViewModel().completeScore(9);
+                        break;
+                    case R.id.button_10:
+                        getViewModel().completeScore(10);
+                        break;
+                    case R.id.button_11:
+                        getViewModel().completeScore(11);
+                        break;
+                    case R.id.button_12:
+                        getViewModel().completeScore(12);
+                        break;
+                    default:
+                        ;
                 }
                 return true;
             }
@@ -88,6 +134,8 @@ public class GameFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.viewModel = new ViewModelProvider(this).get(MatchViewModel.class);
+        viewModel.dummyGame();
     }
 
     @Override
@@ -98,8 +146,8 @@ public class GameFragment extends Fragment {
     }
 
 
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
-        super.onViewCreated(view,savedInstanceState);
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.button_1).setOnClickListener(buttonClickListener);
         view.findViewById(R.id.button_2).setOnClickListener(buttonClickListener);
         view.findViewById(R.id.button_3).setOnClickListener(buttonClickListener);
@@ -126,13 +174,14 @@ public class GameFragment extends Fragment {
         view.findViewById(R.id.button_11).setOnLongClickListener(longClickListener);
         view.findViewById(R.id.button_12).setOnLongClickListener(longClickListener);
 
-        ((TextView) view.findViewById(R.id.game_playerName)).setText(turn.getPlayer().getName());
+        ((TextView) view.findViewById(R.id.game_playerName)).
+                setText(viewModel.getTurn().getValue().getPlayer().getName());
 
-        view.findViewById(R.id.button_undo).setOnClickListener(v -> getTurn().revertLast());
+        view.findViewById(R.id.button_undo).setOnClickListener(v -> getViewModel().revert());
 
     }
 
-    private Turn getTurn(){
-        return this.turn;
+    private MatchViewModel getViewModel() {
+        return viewModel;
     }
 }
