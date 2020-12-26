@@ -135,8 +135,8 @@ public class ScoreData {
 
     public int remainingScore() {
         int result = 0;
-        for (int i = 0; i < SIZE; i++) {
-            result = result + (LIMIT - get(i));
+        for (int i = 1; i <= SIZE; i++) {
+            result = result + i * (LIMIT - get(i));
         }
         return result;
     }

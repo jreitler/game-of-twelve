@@ -29,7 +29,7 @@ public class GameFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.viewModel = new ViewModelProvider(this).get(MatchViewModel.class);
+        this.viewModel = new ViewModelProvider(requireActivity()).get(MatchViewModel.class);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.reitler.got.view;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ public class OverviewListAdapter extends RecyclerView.Adapter<OverviewViewHolder
 
     public OverviewListAdapter(List<OverviewListItem> itemList){
         list = itemList;
+        Log.i("OLA", "OverviewListAdapter created with " + itemList.size() + " items");
     }
 
     @NonNull
@@ -39,5 +41,13 @@ public class OverviewListAdapter extends RecyclerView.Adapter<OverviewViewHolder
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public void setValue(int pos, int newVal) {
+        list.get(pos).setScore(newVal);
+    }
+
+    public void setData(List<OverviewListItem> list){
+        this.list = list;
     }
 }

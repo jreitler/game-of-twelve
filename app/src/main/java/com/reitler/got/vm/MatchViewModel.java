@@ -13,24 +13,30 @@ import com.reitler.got.model.match.Match;
 import com.reitler.got.model.match.MatchDataManager;
 import com.reitler.got.model.match.Player;
 import com.reitler.got.model.match.PlayerManager;
+import com.reitler.got.model.match.ScoreData;
 import com.reitler.got.model.match.Turn;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
 public class MatchViewModel extends AndroidViewModel {
 
+    private ExecutorService executor;
+    private Match mMatch;
     private Turn mTurn;
     private MatchDataManager dataManager;
     private PlayerManager playerManager;
+
     private MutableLiveData<Match> match = new MutableLiveData<>();
     private MutableLiveData<Turn> turn = new MutableLiveData<>();
     private List<MutableLiveData<Integer>> scores = new ArrayList<>();
     private MutableLiveData<Boolean> finished = new MutableLiveData<>();
     private MutableLiveData<Integer> activeNumber = new MutableLiveData<>();
-    private ExecutorService executor;
-    private Match mMatch;
+    private Map<Player, MutableLiveData<Integer>> remainingScores = new LinkedHashMap<>();
 
     public MatchViewModel(@NonNull Application application) {
         super(application);
@@ -47,6 +53,9 @@ public class MatchViewModel extends AndroidViewModel {
     private void loadGame() {
         executor.execute(() -> {
             this.mMatch = dataManager.getOpenMatch();
+            for(Map.Entry<Player, ScoreData> entry : mMatch.getScoreDatas().entrySet()){
+                this.remainingScores.put(entry.getKey(), new MutableLiveData<>(entry.getValue().remainingScore()));
+            }
             this.match.postValue(mMatch);
             mTurn = mMatch.start();
             this.turn.postValue(mTurn);
@@ -62,35 +71,16 @@ public class MatchViewModel extends AndroidViewModel {
         return this.turn;
     }
 
+    public LiveData<Match> getMatch() {
+        return this.match;
+    }
+
     public LiveData<Integer> getScore(int number) {
         return this.scores.get(number - 1);
     }
 
-    /**
-     * Used for prototyping, will be removed in future
-     */
-    public void dummyGame() {
-        executor.execute(() -> {
-            List<Player> players = new ArrayList<>();
-            players.add(playerManager.getOrCreatePlayerForName("Player1"));
-            players.add(playerManager.getOrCreatePlayerForName("Player2"));
-            players.add(playerManager.getOrCreatePlayerForName("Player3"));
-            newGame(players);
-        });
-    }
-
-    public void newGame(List<Player> players) {
-        executor.execute(() -> {
-            Match match = new Match(dataManager);
-            for (Player p : players) {
-                match.addPlayer(p);
-            }
-            this.match.postValue(match);
-
-            mTurn = match.start();
-            this.turn.postValue(mTurn);
-            updateScores();
-        });
+    public Map<Player, ? extends LiveData<Integer>> getRemainingScores(){
+        return this.remainingScores;
     }
 
     public void nextPlayer() {
@@ -131,6 +121,9 @@ public class MatchViewModel extends AndroidViewModel {
         }
         this.activeNumber.postValue(mTurn.getActiveNumber());
         this.finished.postValue(mMatch.isFinished());
+        for(Map.Entry<Player, ScoreData> entry : mMatch.getScoreDatas().entrySet()){
+            this.remainingScores.get(entry.getKey()).postValue(entry.getValue().remainingScore());
+        }
     }
 
     public LiveData<Integer> getActiveNumber() {

@@ -3,8 +3,10 @@ package com.reitler.got.model.match;
 import com.reitler.got.model.data.entity.MatchEntity;
 import com.reitler.got.model.data.entity.ScoreDataEntity;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +28,7 @@ public class Match {
 
     Match(MatchDataManager dataManager, MatchEntity entity){
         this.dataManager = dataManager;
-        this.matchData = new HashMap<>();
+        this.matchData = new LinkedHashMap<>();
         this.playerList = new LinkedList<>();
         this.finished = false;
         this.finalRound = false;
@@ -101,4 +103,7 @@ public class Match {
     }
 
 
+    public Map<Player, ScoreData> getScoreDatas() {
+        return Collections.unmodifiableMap(this.matchData);
+    }
 }
