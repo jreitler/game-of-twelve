@@ -93,7 +93,7 @@ public class MatchViewModel extends AndroidViewModel {
             container.scores.get(i - 1).postValue(mTurn.getScoreData().get(i));
         }
         container.activeNumber.postValue(mTurn.getActiveNumber());
-        container.finished.postValue(mMatch.isFinished());
+
         for(Map.Entry<Player, ScoreData> entry : mMatch.getScoreDatas().entrySet()){
             container.remainingScores.get(entry.getKey()).postValue(entry.getValue().remainingScore());
         }
@@ -131,7 +131,6 @@ public class MatchViewModel extends AndroidViewModel {
         private MutableLiveData<Match> match = new MutableLiveData<>();
         private MutableLiveData<Turn> turn = new MutableLiveData<>();
         private List<MutableLiveData<Integer>> scores = new ArrayList<>();
-        private MutableLiveData<Boolean> finished = new MutableLiveData<>();
         private MutableLiveData<Integer> activeNumber = new MutableLiveData<>();
         private Map<Player, MutableLiveData<Integer>> remainingScores = new LinkedHashMap<>();
         private MutableLiveData<Boolean> finalTurn = new MutableLiveData<>(Boolean.FALSE);

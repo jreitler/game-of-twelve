@@ -15,7 +15,6 @@ public class Match {
     private final IEntitySaveHelper saveHelper;
     private Map<Player, ScoreData> matchData;
     private List<Player> playerList;
-    private boolean finished;
     private Turn turn;
     private MatchEntity entity;
 
@@ -23,7 +22,6 @@ public class Match {
         this.saveHelper = saveHelper;
         this.matchData = new LinkedHashMap<>();
         this.playerList = new LinkedList<>();
-        this.finished = false;
         this.entity = entity;
     }
 
@@ -52,7 +50,6 @@ public class Match {
     public Turn nextPlayer() {
         if (isLastPlayer()) {
             if (isFinalRound()) {
-                this.finished = true;
                 finish();
                 return null;
             }
@@ -78,10 +75,6 @@ public class Match {
             saveHelper.save(score.getEntity());
         }
         saveHelper.save(entity);
-    }
-
-    public boolean isFinished() {
-        return this.finished;
     }
 
     public boolean isLastPlayer() {
