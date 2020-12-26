@@ -1,6 +1,7 @@
 package com.reitler.got.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ public class GameFragment extends Fragment {
     private MatchViewModel viewModel;
 
     private List<Button> buttons = new ArrayList<>();
+    private Button nextPlayerButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,8 @@ public class GameFragment extends Fragment {
         this.buttons.add((Button) view.findViewById(R.id.button_11));
         this.buttons.add((Button) view.findViewById(R.id.button_12));
 
+        this.nextPlayerButton = (Button) view.findViewById(R.id.button_nextPlayer);
+
         for (int i = 1; i <= 12; i++) {
             Button button = this.buttons.get(i - 1);
             button.setOnClickListener(createOnClickListener(i));
@@ -69,6 +73,9 @@ public class GameFragment extends Fragment {
         viewModel.getTurn().observe(getViewLifecycleOwner(), new Observer<Turn>() {
             @Override
             public void onChanged(Turn turn) {
+                if(turn == null){
+                    return;
+                }
                 ((TextView) view.findViewById(R.id.game_playerName)).
                         setText(turn.getPlayer().getName());
             }
@@ -79,6 +86,9 @@ public class GameFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 viewModel.nextPlayer();
+                if (((Button) v).getText().equals(getString(R.string.end_game))) {
+                    requireActivity().finish();
+                }
             }
         });
 
@@ -95,13 +105,21 @@ public class GameFragment extends Fragment {
             }
         });
 
+        viewModel.isFinalTurn().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean finalTurn) {
+                if(finalTurn){
+                    nextPlayerButton.setText(R.string.end_game);
+                }
+            }
+        });
     }
 
     private MatchViewModel getViewModel() {
         return viewModel;
     }
 
-    private View.OnClickListener createOnClickListener(int index){
+    private View.OnClickListener createOnClickListener(int index) {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +128,7 @@ public class GameFragment extends Fragment {
         };
     }
 
-    private View.OnLongClickListener createOnLongClickListener(int index){
+    private View.OnLongClickListener createOnLongClickListener(int index) {
         return new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {

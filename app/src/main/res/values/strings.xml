@@ -7,6 +7,7 @@
     <string name="create_new_game">Neues Spiel erstellen</string>
     <string name="start_game">Spiel starten</string>
     <string name="create_user">Spieler erstellen</string>
+    <string name="end_game">Spiel beenden</string>
 
     <string name="button_1_caption_template"> 1 (%s)</string>
     <string name="button_2_caption_template"> 2 (%s)</string>

@@ -14,6 +14,7 @@ import org.mockito.Mockito;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.when;
 
@@ -29,13 +30,11 @@ public class MatchTest {
         pEntity2.setName("player2");
         Player p2 = new Player(pEntity2);
 
-        MatchDataManager dataManager = Mockito.mock(MatchDataManager.class);
-        when(dataManager.createMatchEntity()).thenReturn(new MatchEntity());
-        when(dataManager.createScoreDataEntity(anyLong(), anyLong())).thenReturn(new ScoreDataEntity());
-        Match m = new Match(dataManager);
+        IEntitySaveHelper dataManager = Mockito.mock(IEntitySaveHelper.class);
+        Match m = new Match(dataManager, new MatchEntity());
 
-        m.addPlayer(p1);
-        m.addPlayer(p2);
+        m.addPlayer(p1, new ScoreDataEntity());
+        m.addPlayer(p2, new ScoreDataEntity());
 
         // p1
         Turn t = m.start();

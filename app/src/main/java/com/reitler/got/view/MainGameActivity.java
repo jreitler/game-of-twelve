@@ -14,4 +14,9 @@ public class MainGameActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main_game);
     }
+
+    @Override
+    public void onBackPressed() {
+        // don't allow to go back
+    }
 }

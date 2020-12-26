@@ -12,6 +12,8 @@ import com.reitler.got.model.data.entity.PlayerEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -31,10 +33,7 @@ public class MatchIntTest {
 
         Player p2 = playerManager.createPlayer("player2");
 
-        Match m = new Match(dataManager);
-
-        m.addPlayer(p1);
-        m.addPlayer(p2);
+        Match m = dataManager.createMatch(Arrays.asList(p1, p2));
 
         // p1
         Turn t = m.start();

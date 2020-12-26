@@ -19,6 +19,9 @@ public class MatchEntity {
     @ColumnInfo(name = "start_date")
     private Date startDate;
 
+    @ColumnInfo(name = "active_player")
+    private int activePlayer;
+
     public void setMatchId(long matchId){
         this.matchId = matchId;
     }
@@ -41,5 +44,13 @@ public class MatchEntity {
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    }
+
+    public int getActivePlayer(){
+        return this.activePlayer;
+    }
+
+    public void setActivePlayer(int activePlayer) {
+        this.activePlayer = activePlayer;
     }
 }

@@ -1,7 +1,5 @@
 package com.reitler.got.model.match;
 
-import android.util.Log;
-
 import com.reitler.got.model.data.access.MatchDatabase;
 import com.reitler.got.model.data.entity.MatchEntity;
 import com.reitler.got.model.data.entity.PlayerEntity;
@@ -9,7 +7,7 @@ import com.reitler.got.model.data.entity.ScoreDataEntity;
 
 import java.util.List;
 
-public class MatchDataManager {
+public class MatchDataManager implements IEntitySaveHelper{
 
     private MatchDatabase database;
 
@@ -58,11 +56,17 @@ public class MatchDataManager {
         this.database.getMatchDao().save(entity);
     }
 
-    public void createMatch(List<Player> selectedPlayers) {
-        Match match = new Match(this);
+    public Match createMatch(List<Player> selectedPlayers) {
+        MatchEntity matchEntity = createMatchEntity();
+        Match match = new Match(this, matchEntity);
 
-        for(Player p : selectedPlayers){
-            match.addPlayer(p);
+        for (int i = 0; i < selectedPlayers.size(); i++) {
+            Player p = selectedPlayers.get(i);
+            ScoreDataEntity scoreDataEntity =
+                    createScoreDataEntity(matchEntity.getMatchId(), p.getId(), i);
+            match.addPlayer(p, scoreDataEntity);
         }
+
+        return match;
     }
 }

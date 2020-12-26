@@ -29,23 +29,16 @@ public class MatchViewModel extends AndroidViewModel {
     private Match mMatch;
     private Turn mTurn;
     private MatchDataManager dataManager;
-    private PlayerManager playerManager;
 
-    private MutableLiveData<Match> match = new MutableLiveData<>();
-    private MutableLiveData<Turn> turn = new MutableLiveData<>();
-    private List<MutableLiveData<Integer>> scores = new ArrayList<>();
-    private MutableLiveData<Boolean> finished = new MutableLiveData<>();
-    private MutableLiveData<Integer> activeNumber = new MutableLiveData<>();
-    private Map<Player, MutableLiveData<Integer>> remainingScores = new LinkedHashMap<>();
+    private LiveDataContainer container = new LiveDataContainer();
 
     public MatchViewModel(@NonNull Application application) {
         super(application);
         MatchDatabase matchDataBase = ((GotApplication) application).matchDataBase;
         this.dataManager = new MatchDataManager(matchDataBase);
         for (int i = 0; i < 12; i++) {
-            scores.add(new MutableLiveData<>(0));
+            container.scores.add(new MutableLiveData<>(0));
         }
-        this.playerManager = new PlayerManager(matchDataBase.getPlayerDao());
         this.executor = ((GotApplication) application).executorService;
         loadGame();
     }
@@ -54,39 +47,19 @@ public class MatchViewModel extends AndroidViewModel {
         executor.execute(() -> {
             this.mMatch = dataManager.getOpenMatch();
             for(Map.Entry<Player, ScoreData> entry : mMatch.getScoreDatas().entrySet()){
-                this.remainingScores.put(entry.getKey(), new MutableLiveData<>(entry.getValue().remainingScore()));
+                container.remainingScores.put(entry.getKey(), new MutableLiveData<>(entry.getValue().remainingScore()));
             }
-            this.match.postValue(mMatch);
+            container.match.postValue(mMatch);
             mTurn = mMatch.start();
-            this.turn.postValue(mTurn);
+            container.turn.postValue(mTurn);
             updateScores();
         });
     }
 
-    public LiveData<Boolean> isFinished(){
-        return finished;
-    }
-
-    public LiveData<Turn> getTurn() {
-        return this.turn;
-    }
-
-    public LiveData<Match> getMatch() {
-        return this.match;
-    }
-
-    public LiveData<Integer> getScore(int number) {
-        return this.scores.get(number - 1);
-    }
-
-    public Map<Player, ? extends LiveData<Integer>> getRemainingScores(){
-        return this.remainingScores;
-    }
-
     public void nextPlayer() {
         executor.execute(() -> {
-            mTurn = this.match.getValue().nextPlayer();
-            this.turn.postValue(mTurn);
+            mTurn = container.match.getValue().nextPlayer();
+            container.turn.postValue(mTurn);
             updateScores();
         });
     }
@@ -117,16 +90,50 @@ public class MatchViewModel extends AndroidViewModel {
             return;
         }
         for (int i = 1; i <= 12; i++) {
-            this.scores.get(i - 1).postValue(mTurn.getScoreData().get(i));
+            container.scores.get(i - 1).postValue(mTurn.getScoreData().get(i));
         }
-        this.activeNumber.postValue(mTurn.getActiveNumber());
-        this.finished.postValue(mMatch.isFinished());
+        container.activeNumber.postValue(mTurn.getActiveNumber());
+        container.finished.postValue(mMatch.isFinished());
         for(Map.Entry<Player, ScoreData> entry : mMatch.getScoreDatas().entrySet()){
-            this.remainingScores.get(entry.getKey()).postValue(entry.getValue().remainingScore());
+            container.remainingScores.get(entry.getKey()).postValue(entry.getValue().remainingScore());
+        }
+        if(mMatch.isFinalRound() && mMatch.isLastPlayer()){
+            container.finalTurn.postValue(Boolean.TRUE);
         }
     }
 
+
+    public LiveData<Turn> getTurn() {
+        return container.turn;
+    }
+
+    public LiveData<Match> getMatch() {
+        return container.match;
+    }
+
+    public LiveData<Integer> getScore(int number) {
+        return container.scores.get(number - 1);
+    }
+
+    public Map<Player, ? extends LiveData<Integer>> getRemainingScores(){
+        return container.remainingScores;
+    }
+
     public LiveData<Integer> getActiveNumber() {
-        return this.activeNumber;
+        return container.activeNumber;
+    }
+
+    public LiveData<Boolean> isFinalTurn(){
+        return container.finalTurn;
+    }
+
+    private class LiveDataContainer{
+        private MutableLiveData<Match> match = new MutableLiveData<>();
+        private MutableLiveData<Turn> turn = new MutableLiveData<>();
+        private List<MutableLiveData<Integer>> scores = new ArrayList<>();
+        private MutableLiveData<Boolean> finished = new MutableLiveData<>();
+        private MutableLiveData<Integer> activeNumber = new MutableLiveData<>();
+        private Map<Player, MutableLiveData<Integer>> remainingScores = new LinkedHashMap<>();
+        private MutableLiveData<Boolean> finalTurn = new MutableLiveData<>(Boolean.FALSE);
     }
 }

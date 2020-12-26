@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "8ffbf91a7a2317d566bcf208b4f6a12e",
+    "identityHash": "501410fd8ea9bed8c86aeebe2724c276",
     "entities": [
       {
         "tableName": "t_match",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`match_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `end_date` INTEGER, `start_date` INTEGER)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`match_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `end_date` INTEGER, `start_date` INTEGER, `active_player` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "matchId",
@@ -25,6 +25,12 @@
             "columnName": "start_date",
             "affinity": "INTEGER",
             "notNull": false
+          },
+          {
+            "fieldPath": "activePlayer",
+            "columnName": "active_player",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -225,7 +231,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8ffbf91a7a2317d566bcf208b4f6a12e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '501410fd8ea9bed8c86aeebe2724c276')"
     ]
   }
 }

@@ -1,5 +1,6 @@
 package com.reitler.got.view;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -35,8 +36,7 @@ public class CreateGameActivity extends AppCompatActivity {
         bStartGame.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 viewModel.createMatch(() -> {
-                    getMainExecutor().execute(() ->
-                            startActivity(new Intent(CreateGameActivity.this, MainGameActivity.class)));
+                    startGameActivity();
                 });
             }
         });
@@ -60,6 +60,11 @@ public class CreateGameActivity extends AppCompatActivity {
             }
         });
         viewModel.loadUsers();
+    }
+
+    private void startGameActivity(){
+        getMainExecutor().execute(() ->
+                startActivity(new Intent(this, MainGameActivity.class)));
     }
 
 }
