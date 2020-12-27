@@ -1,12 +1,10 @@
 package com.reitler.got.view;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,6 +12,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.reitler.got.R;
+import com.reitler.got.databinding.FragmentGameBinding;
 import com.reitler.got.model.match.Turn;
 import com.reitler.got.vm.MatchViewModel;
 
@@ -23,10 +22,10 @@ import java.util.List;
 
 public class GameFragment extends Fragment {
 
+    private FragmentGameBinding binding;
     private MatchViewModel viewModel;
 
     private List<Button> buttons = new ArrayList<>();
-    private Button nextPlayerButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,27 +37,27 @@ public class GameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_game, container, false);
+        this.binding = FragmentGameBinding.inflate(inflater, container, false);
+
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        this.buttons.add((Button) view.findViewById(R.id.button_1));
-        this.buttons.add((Button) view.findViewById(R.id.button_2));
-        this.buttons.add((Button) view.findViewById(R.id.button_3));
-        this.buttons.add((Button) view.findViewById(R.id.button_4));
-        this.buttons.add((Button) view.findViewById(R.id.button_5));
-        this.buttons.add((Button) view.findViewById(R.id.button_6));
-        this.buttons.add((Button) view.findViewById(R.id.button_7));
-        this.buttons.add((Button) view.findViewById(R.id.button_8));
-        this.buttons.add((Button) view.findViewById(R.id.button_9));
-        this.buttons.add((Button) view.findViewById(R.id.button_10));
-        this.buttons.add((Button) view.findViewById(R.id.button_11));
-        this.buttons.add((Button) view.findViewById(R.id.button_12));
-
-        this.nextPlayerButton = (Button) view.findViewById(R.id.button_nextPlayer);
+        this.buttons.add(binding.button1);
+        this.buttons.add(binding.button2);
+        this.buttons.add(binding.button3);
+        this.buttons.add(binding.button4);
+        this.buttons.add(binding.button5);
+        this.buttons.add(binding.button6);
+        this.buttons.add(binding.button7);
+        this.buttons.add(binding.button8);
+        this.buttons.add(binding.button9);
+        this.buttons.add(binding.button10);
+        this.buttons.add(binding.button11);
+        this.buttons.add(binding.button12);
 
         for (int i = 1; i <= 12; i++) {
             Button button = this.buttons.get(i - 1);
@@ -68,7 +67,7 @@ public class GameFragment extends Fragment {
                     createButtonObserver(button, i));
         }
 
-        view.findViewById(R.id.button_undo).setOnClickListener(v -> getViewModel().revert());
+        binding.buttonUndo.setOnClickListener(v -> getViewModel().revert());
 
         viewModel.getTurn().observe(getViewLifecycleOwner(), new Observer<Turn>() {
             @Override
@@ -76,17 +75,16 @@ public class GameFragment extends Fragment {
                 if(turn == null){
                     return;
                 }
-                ((TextView) view.findViewById(R.id.game_playerName)).
-                        setText(turn.getPlayer().getName());
+                binding.gamePlayerName.setText(turn.getPlayer().getName());
             }
         });
 
 
-        view.findViewById(R.id.button_nextPlayer).setOnClickListener(new View.OnClickListener() {
+        binding.buttonNextPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewModel.nextPlayer();
-                if (((Button) v).getText().equals(getString(R.string.end_game))) {
+                if (binding.buttonNextPlayer.getText().equals(getString(R.string.end_game))) {
                     requireActivity().finish();
                 }
             }
@@ -109,10 +107,16 @@ public class GameFragment extends Fragment {
             @Override
             public void onChanged(Boolean finalTurn) {
                 if(finalTurn){
-                    nextPlayerButton.setText(R.string.end_game);
+                    binding.buttonNextPlayer.setText(R.string.end_game);
                 }
             }
         });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     private MatchViewModel getViewModel() {
