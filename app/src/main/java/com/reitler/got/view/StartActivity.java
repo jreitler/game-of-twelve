@@ -25,7 +25,7 @@ public class StartActivity extends AppCompatActivity {
         this.viewModel = new ViewModelProvider(this).get(StartViewModel.class);
 
         binding.buttonCreateNewGame.setOnClickListener(listener ->
-                startActivity(new Intent(StartActivity.this, CreateGameActivity.class)));
+                startActivity(new Intent(StartActivity.this, CreateMatchActivity.class)));
         binding.buttonLoadGame.setOnClickListener(listener ->
                 startActivity(new Intent(StartActivity.this, MainGameActivity.class)));
 

@@ -12,7 +12,7 @@
         android:theme="@style/Theme.GameOfTwelve"
         android:configChanges="orientation">
         <activity android:name=".view.MainGameActivity" />
-        <activity android:name=".view.CreateGameActivity"/>
+        <activity android:name=".view.CreateMatchActivity"/>
         <activity android:name=".view.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
