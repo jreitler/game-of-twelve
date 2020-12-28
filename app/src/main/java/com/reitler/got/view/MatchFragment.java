@@ -1,5 +1,6 @@
 package com.reitler.got.view;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -79,13 +81,12 @@ public class MatchFragment extends Fragment {
             }
         });
 
-
         binding.buttonNextPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewModel.nextPlayer();
-                if (binding.buttonNextPlayer.getText().equals(getString(R.string.end_game))) {
-                    requireActivity().finish();
+                if (binding.buttonNextPlayer.getText().equals(getString(R.string.button_end_game))) {
+                    onFinishButton();
                 }
             }
         });
@@ -107,10 +108,31 @@ public class MatchFragment extends Fragment {
             @Override
             public void onChanged(Boolean finalTurn) {
                 if(finalTurn){
-                    binding.buttonNextPlayer.setText(R.string.end_game);
+                    binding.buttonNextPlayer.setText(R.string.button_end_game);
+                } else {
+                    binding.buttonNextPlayer.setText(R.string.button_next_player);
                 }
             }
         });
+    }
+
+    private void onFinishButton() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+        builder.setPositiveButton(R.string.dialog_rematch_ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                viewModel.rematch();
+            }
+        });
+
+        builder.setNegativeButton(R.string.dialog_rematch_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                requireActivity().finish();
+            }
+        });
+        builder.setMessage(R.string.dialog_rematch_question);
+        builder.show();
     }
 
     @Override

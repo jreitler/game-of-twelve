@@ -48,6 +48,10 @@ public class Match {
     }
 
     public Turn nextPlayer() {
+        if(this.entity.getEndDate() != null){
+            // the match is already finished
+            return null;
+        }
         if (isLastPlayer()) {
             if (isFinalRound()) {
                 finish();

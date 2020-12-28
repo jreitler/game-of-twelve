@@ -12,12 +12,10 @@ import com.reitler.got.model.data.access.MatchDatabase;
 import com.reitler.got.model.match.Match;
 import com.reitler.got.model.match.MatchDataManager;
 import com.reitler.got.model.match.Player;
-import com.reitler.got.model.match.PlayerManager;
 import com.reitler.got.model.match.ScoreData;
 import com.reitler.got.model.match.Turn;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,19 +38,35 @@ public class MatchViewModel extends AndroidViewModel {
             container.scores.add(new MutableLiveData<>(0));
         }
         this.executor = ((GotApplication) application).executorService;
-        loadGame();
+        loadMatch();
     }
 
-    private void loadGame() {
+    private void loadMatch() {
         executor.execute(() -> {
             this.mMatch = dataManager.getOpenMatch();
-            for(Map.Entry<Player, ScoreData> entry : mMatch.getScoreDatas().entrySet()){
-                container.remainingScores.put(entry.getKey(), new MutableLiveData<>(entry.getValue().remainingScore()));
-            }
-            container.match.postValue(mMatch);
-            mTurn = mMatch.start();
-            container.turn.postValue(mTurn);
-            updateScores();
+            matchCreated();
+        });
+    }
+
+    private void matchCreated() {
+        container.remainingScores.clear();
+        for(Map.Entry<Player, ScoreData> entry : mMatch.getScoreDatas().entrySet()){
+            container.remainingScores.put(entry.getKey(), new MutableLiveData<>(entry.getValue().remainingScore()));
+        }
+        container.match.postValue(mMatch);
+        mTurn = mMatch.start();
+        container.turn.postValue(mTurn);
+        updateScores();
+    }
+
+    public void rematch(){
+        executor.execute(() -> {
+            List<Player> players = new ArrayList<>(mMatch.getScoreDatas().keySet());
+            Player firstPlayer = players.remove(0);
+            players.add(firstPlayer);
+
+            mMatch = dataManager.createMatch(players);
+            matchCreated();
         });
     }
 
@@ -99,6 +113,8 @@ public class MatchViewModel extends AndroidViewModel {
         }
         if(mMatch.isFinalRound() && mMatch.isLastPlayer()){
             container.finalTurn.postValue(Boolean.TRUE);
+        } else {
+            container.finalTurn.postValue(Boolean.FALSE);
         }
     }
 

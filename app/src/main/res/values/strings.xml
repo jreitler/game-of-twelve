@@ -1,15 +1,19 @@
 <resources>
     <string name="app_name">12er-Spiel</string>
     <string name="undo">Rückgängig</string>
-    <string name="nextPlayer">Nächster Spieler</string>
+    <string name="button_next_player">Nächster Spieler</string>
     <string name="overview">Übersicht</string>
-    <string name="load_game">Letztes Spiel laden</string>
-    <string name="create_new_game">Neues Spiel erstellen</string>
-    <string name="start_game">Spiel starten</string>
-    <string name="create_user">Spieler erstellen</string>
-    <string name="end_game">Spiel beenden</string>
+    <string name="button_load_game">Letztes Spiel laden</string>
+    <string name="button_create_new_game">Neues Spiel erstellen</string>
+    <string name="button_start_game">Spiel starten</string>
+    <string name="button_create_user">Spieler erstellen</string>
+    <string name="button_end_game">Spiel beenden</string>
     <string name="available_players">Verfügbare Spieler</string>
     <string name="selected_players">Ausgewählte Spieler</string>
+
+    <string name="dialog_rematch_question">Noch einmal spielen?</string>
+    <string name="dialog_rematch_ok">Ja bitte!</string>
+    <string name="dialog_rematch_cancel">Nein</string>
 
     <string name="button_1_caption_template"> 1 (%s)</string>
     <string name="button_2_caption_template"> 2 (%s)</string>
