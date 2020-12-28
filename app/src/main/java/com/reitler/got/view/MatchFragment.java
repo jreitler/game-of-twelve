@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.reitler.got.R;
-import com.reitler.got.databinding.FragmentGameBinding;
+import com.reitler.got.databinding.FragmentMatchBinding;
 import com.reitler.got.model.match.Turn;
 import com.reitler.got.vm.MatchViewModel;
 
@@ -20,9 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class GameFragment extends Fragment {
+public class MatchFragment extends Fragment {
 
-    private FragmentGameBinding binding;
+    private FragmentMatchBinding binding;
     private MatchViewModel viewModel;
 
     private List<Button> buttons = new ArrayList<>();
@@ -37,7 +37,7 @@ public class GameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        this.binding = FragmentGameBinding.inflate(inflater, container, false);
+        this.binding = FragmentMatchBinding.inflate(inflater, container, false);
 
         return binding.getRoot();
     }

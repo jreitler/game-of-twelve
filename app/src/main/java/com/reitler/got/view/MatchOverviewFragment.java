@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.reitler.got.databinding.FragmentOverviewBinding;
+import com.reitler.got.databinding.FragmentMatchOverviewBinding;
 import com.reitler.got.model.match.Match;
 import com.reitler.got.model.match.Player;
 import com.reitler.got.vm.MatchViewModel;
@@ -24,9 +24,9 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OverviewFragment extends Fragment {
+public class MatchOverviewFragment extends Fragment {
     List<OverviewListItem> overviewList = new ArrayList<>();
-    private FragmentOverviewBinding binding;
+    private FragmentMatchOverviewBinding binding;
     private MatchViewModel viewModel;
     private OverviewListAdapter adapter;
 
@@ -40,7 +40,7 @@ public class OverviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        this.binding = FragmentOverviewBinding.inflate(getLayoutInflater(), container, false);
+        this.binding = FragmentMatchOverviewBinding.inflate(getLayoutInflater(), container, false);
         return this.binding.getRoot();
     }
 

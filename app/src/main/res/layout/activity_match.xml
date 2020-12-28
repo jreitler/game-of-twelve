@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainGameActivity"
+    tools:context=".view.MatchActivity"
     tools:viewBindingIgnore="true">
 
 
     <fragment
         android:id="@+id/fragment_overview"
-        android:name="com.reitler.got.view.OverviewFragment"
+        android:name="com.reitler.got.view.MatchOverviewFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/overview_title"
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/fragment_game"
-        android:name="com.reitler.got.view.GameFragment"
+        android:name="com.reitler.got.view.MatchFragment"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

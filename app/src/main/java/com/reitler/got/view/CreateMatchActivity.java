@@ -73,7 +73,7 @@ public class CreateMatchActivity extends AppCompatActivity {
 
     private void startGameActivity(){
         getMainExecutor().execute(() ->
-                startActivity(new Intent(this, MainGameActivity.class)));
+                startActivity(new Intent(this, MatchActivity.class)));
     }
 
 }

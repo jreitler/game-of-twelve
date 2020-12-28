@@ -27,7 +27,7 @@ public class StartActivity extends AppCompatActivity {
         binding.buttonCreateNewGame.setOnClickListener(listener ->
                 startActivity(new Intent(StartActivity.this, CreateMatchActivity.class)));
         binding.buttonLoadGame.setOnClickListener(listener ->
-                startActivity(new Intent(StartActivity.this, MainGameActivity.class)));
+                startActivity(new Intent(StartActivity.this, MatchActivity.class)));
 
         this.viewModel.getOpenMatch().observe(this, new Observer<Match>() {
             @Override

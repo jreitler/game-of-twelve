@@ -6,12 +6,12 @@ import android.os.Bundle;
 
 import com.reitler.got.R;
 
-public class MainGameActivity extends AppCompatActivity {
+public class MatchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_game);
+        setContentView(R.layout.activity_match);
     }
 
     @Override
