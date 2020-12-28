@@ -15,7 +15,9 @@ import com.reitler.got.model.match.PlayerManager;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 
 public class CreateMatchViewModel extends AndroidViewModel {
@@ -91,6 +93,15 @@ public class CreateMatchViewModel extends AndroidViewModel {
         }
         container.availablePlayers.postValue(Collections.unmodifiableList(this.availablePlayers));
         container.selectedPlayers.postValue(Collections.unmodifiableList(this.selectedPlayers));
+    }
+
+    public Set<String> getExistingNames() {
+        Set<String> result = new HashSet<>();
+
+        availablePlayers.stream().map(p->p.getName()).forEach(result::add);
+        selectedPlayers.stream().map(p->p.getName()).forEach(result::add);
+
+        return result;
     }
 
     private class LiveDataContainer{

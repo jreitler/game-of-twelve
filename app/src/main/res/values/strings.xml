@@ -42,4 +42,8 @@
 
     <string name="button_rematch">Revanche</string>
     <string name="button_back_to_menu">Zum Menü</string>
+    <string name="player_dialog_title">Neuen Spieler erstellen</string>
+    <string name="player_dialog_header">Name:</string>
+    <string name="message_player_name_duplicate">Dieser Name ist bereits vergeben.</string>
+    <string name="hint_player_name">Bitte einen Namen eingeben</string>
 </resources>
