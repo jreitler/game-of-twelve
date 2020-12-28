@@ -59,17 +59,6 @@ public class MatchViewModel extends AndroidViewModel {
         updateScores();
     }
 
-    public void rematch(){
-        executor.execute(() -> {
-            List<Player> players = new ArrayList<>(mMatch.getScoreDatas().keySet());
-            Player firstPlayer = players.remove(0);
-            players.add(firstPlayer);
-
-            mMatch = dataManager.createMatch(players);
-            matchCreated();
-        });
-    }
-
     public void nextPlayer() {
         executor.execute(() -> {
             mTurn = container.match.getValue().nextPlayer();

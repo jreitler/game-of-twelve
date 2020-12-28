@@ -1,6 +1,7 @@
 package com.reitler.got.view;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -117,22 +118,9 @@ public class MatchFragment extends Fragment {
     }
 
     private void onFinishButton() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-        builder.setPositiveButton(R.string.dialog_rematch_ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                viewModel.rematch();
-            }
-        });
-
-        builder.setNegativeButton(R.string.dialog_rematch_cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                requireActivity().finish();
-            }
-        });
-        builder.setMessage(R.string.dialog_rematch_question);
-        builder.show();
+        Intent intent = new Intent(requireContext(), MatchSummaryActivity.class);
+        intent.putExtra(MatchSummaryActivity.EXTRA_MATCH_ID, viewModel.getMatch().getValue().getId());
+        startActivity(intent);
     }
 
     @Override

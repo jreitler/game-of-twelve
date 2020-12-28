@@ -35,13 +35,7 @@ public class MatchDataManager implements IEntitySaveHelper{
         if (openMatch == null) {
             return null;
         }
-        Match m = new Match(this, openMatch);
-        List<ScoreDataEntity> scoresForMatch = database.getScoreDao().getScoresForMatch(openMatch.getMatchId());
-        for (ScoreDataEntity s : scoresForMatch) {
-            PlayerEntity playerForId = database.getPlayerDao().getPlayerForId(s.getPlayerId());
-            m.addPlayer(new Player(playerForId), s);
-        }
-        return m;
+       return restoreMatch(openMatch);
     }
 
     public void deleteOpenMatches() {
@@ -68,5 +62,20 @@ public class MatchDataManager implements IEntitySaveHelper{
         }
 
         return match;
+    }
+
+    public Match getMatch(long matchId) {
+        MatchEntity matchEntity = database.getMatchDao().getMatchForId(matchId);
+        return restoreMatch(matchEntity);
+    }
+
+    private Match restoreMatch(MatchEntity entity){
+        Match m = new Match(this, entity);
+        List<ScoreDataEntity> scoresForMatch = database.getScoreDao().getScoresForMatch(entity.getMatchId());
+        for (ScoreDataEntity s : scoresForMatch) {
+            PlayerEntity playerForId = database.getPlayerDao().getPlayerForId(s.getPlayerId());
+            m.addPlayer(new Player(playerForId), s);
+        }
+        return m;
     }
 }

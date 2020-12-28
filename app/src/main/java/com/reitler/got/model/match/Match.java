@@ -68,6 +68,10 @@ public class Match {
         return this.turn;
     }
 
+    public long getId(){
+        return entity.getMatchId();
+    }
+
     private void finish() {
         this.entity.setEndDate(new Date());
 

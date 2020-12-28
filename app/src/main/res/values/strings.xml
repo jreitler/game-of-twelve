@@ -10,10 +10,22 @@
     <string name="button_end_game">Spiel beenden</string>
     <string name="available_players">Verfügbare Spieler</string>
     <string name="selected_players">Ausgewählte Spieler</string>
-
-    <string name="dialog_rematch_question">Noch einmal spielen?</string>
-    <string name="dialog_rematch_ok">Ja bitte!</string>
-    <string name="dialog_rematch_cancel">Nein</string>
+    
+    <string name="summary_header">Spielende</string>
+    <string name="summary_table_header_name">Spieler</string>
+    <string name="summary_table_header_score1"> 1</string>
+    <string name="summary_table_header_score2"> 2</string>
+    <string name="summary_table_header_score3"> 3</string>
+    <string name="summary_table_header_score4"> 4</string>
+    <string name="summary_table_header_score5"> 5</string>
+    <string name="summary_table_header_score6"> 6</string>
+    <string name="summary_table_header_score7"> 7</string>
+    <string name="summary_table_header_score8"> 8</string>
+    <string name="summary_table_header_score9"> 9</string>
+    <string name="summary_table_header_score10">10</string>
+    <string name="summary_table_header_score11">11</string>
+    <string name="summary_table_header_score12">12</string>
+    <string name="summary_table_header_sum">Summe</string>
 
     <string name="button_1_caption_template"> 1 (%s)</string>
     <string name="button_2_caption_template"> 2 (%s)</string>
@@ -28,4 +40,6 @@
     <string name="button_11_caption_template">11 (%s)</string>
     <string name="button_12_caption_template">12 (%s)</string>
 
+    <string name="button_rematch">Revanche</string>
+    <string name="button_back_to_menu">Zum Menü</string>
 </resources>

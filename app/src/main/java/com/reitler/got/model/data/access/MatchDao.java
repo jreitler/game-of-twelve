@@ -22,6 +22,9 @@ public interface MatchDao {
     @Query("SELECT * from t_match")
     List<MatchEntity> getAllMatches();
 
+    @Query("SELECT * from t_match WHERE match_id=:matchId")
+    MatchEntity getMatchForId(long matchId);
+
     @Query("SELECT * from t_match WHERE rowid=:rowId")
     MatchEntity getMatchForRowId(long rowId);
 

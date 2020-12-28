@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/table_row_padding">
+
+    <TextView
+        android:id="@+id/summary_entry_name"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:text="@string/summary_table_header_name"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/summary_entry_score_1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/summary_table_header_score1"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintStart_toEndOf="@id/summary_entry_name"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/summary_entry_score_2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/summary_table_header_score2"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintStart_toEndOf="@id/summary_entry_score_1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/summary_entry_score_3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/summary_table_header_score3"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintStart_toEndOf="@id/summary_entry_score_2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/summary_entry_score_4"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/summary_table_header_score4"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintStart_toEndOf="@id/summary_entry_score_3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/summary_entry_score_5"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/summary_table_header_score5"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintStart_toEndOf="@id/summary_entry_score_4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/summary_entry_score_6"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/summary_table_header_score6"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintStart_toEndOf="@id/summary_entry_score_5"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/summary_entry_score_7"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/summary_table_header_score7"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintStart_toEndOf="@id/summary_entry_score_6"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/summary_entry_score_8"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/summary_table_header_score8"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintStart_toEndOf="@id/summary_entry_score_7"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/summary_entry_score_9"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/summary_table_header_score9"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintStart_toEndOf="@id/summary_entry_score_8"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/summary_entry_score_10"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/summary_table_header_score10"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintStart_toEndOf="@id/summary_entry_score_9"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/summary_entry_score_11"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/summary_table_header_score11"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintStart_toEndOf="@id/summary_entry_score_10"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/summary_entry_score_12"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/summary_table_header_score12"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintStart_toEndOf="@id/summary_entry_score_11"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/summary_entry_score_sum"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:text="@string/summary_table_header_sum"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/summary_entry_score_12"
+        app:layout_constraintTop_toTopOf="parent" />
+</TableRow>

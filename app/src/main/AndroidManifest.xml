@@ -13,6 +13,7 @@
         android:configChanges="orientation">
         <activity android:name=".view.MatchActivity" />
         <activity android:name=".view.CreateMatchActivity"/>
+        <activity android:name=".view.MatchSummaryActivity"/>
         <activity android:name=".view.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
