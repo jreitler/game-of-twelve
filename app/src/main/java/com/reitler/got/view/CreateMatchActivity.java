@@ -70,6 +70,12 @@ public class CreateMatchActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Player> players) {
                 selectedUsersAdapter.setData(players);
+                if(players.isEmpty()){
+                    binding.buttonStartGame.setEnabled(false);
+                }
+                else {
+                    binding.buttonStartGame.setEnabled(true);
+                }
             }
         });
 
