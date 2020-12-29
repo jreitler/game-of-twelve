@@ -3,6 +3,7 @@ package com.reitler.got.view;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -32,7 +33,6 @@ public class MatchSummaryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         this.binding = ActivityMatchSummaryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setHeader(binding.summaryTable);
@@ -126,6 +126,13 @@ public class MatchSummaryActivity extends AppCompatActivity {
     private void setData(Match match) {
         TableLayout summaryTable = binding.summaryTable;
 
+        // first, remove all table rows that might be present already
+        int childCount = summaryTable.getChildCount();
+        for(int i = childCount -1; i > 0; i--){
+            summaryTable.removeView(summaryTable.getChildAt(i));
+        }
+
+        // then set the new data in the table
         for (Map.Entry<Player, ScoreData> entry : match.getScoreDatas().entrySet()) {
 
             ViewSummaryEntryBinding entryBinding = ViewSummaryEntryBinding.inflate(getLayoutInflater(), summaryTable, false);
