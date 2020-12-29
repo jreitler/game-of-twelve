@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -49,7 +50,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/button_2"
         app:layout_constraintTop_toBottomOf="@+id/game_playerName"
-        app:layout_constraintBottom_toTopOf="@id/button_4"
+        app:layout_constraintBottom_toTopOf="@id/button_5"
         android:layout_marginBottom="@dimen/button_padding_bottom" />
 
     <Button
@@ -61,7 +62,7 @@
         app:layout_constraintStart_toEndOf="@+id/button_1"
         app:layout_constraintEnd_toStartOf="@id/button_3"
         app:layout_constraintTop_toBottomOf="@+id/game_playerName"
-        app:layout_constraintBottom_toTopOf="@id/button_5"/>
+        app:layout_constraintBottom_toTopOf="@id/button_6"/>
 
     <Button
         android:id="@+id/button_3"
@@ -70,9 +71,9 @@
         android:layout_height="0dp"
         android:text="3: 0"
         app:layout_constraintStart_toEndOf="@+id/button_2"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_4"
         app:layout_constraintTop_toBottomOf="@+id/game_playerName"
-        app:layout_constraintBottom_toTopOf="@id/button_6"/>
+        app:layout_constraintBottom_toTopOf="@id/button_7"/>
 
     <Button
         android:id="@+id/button_4"
@@ -80,10 +81,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="4: 0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/button_5"
-        app:layout_constraintTop_toBottomOf="@id/button_1"
-        app:layout_constraintBottom_toTopOf="@id/button_7"/>
+        app:layout_constraintStart_toEndOf="@+id/button_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_playerName"
+        app:layout_constraintBottom_toTopOf="@id/button_8"/>
 
     <Button
         android:id="@+id/button_5"
@@ -91,10 +92,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="5: 0"
-        app:layout_constraintStart_toEndOf="@id/button_4"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/button_6"
-        app:layout_constraintTop_toBottomOf="@+id/button_2"
-        app:layout_constraintBottom_toTopOf="@id/button_8"/>
+        app:layout_constraintTop_toBottomOf="@+id/button_1"
+        app:layout_constraintBottom_toTopOf="@id/button_9"/>
 
     <Button
         android:id="@+id/button_6"
@@ -102,10 +103,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="6: 0"
+        app:layout_constraintBottom_toTopOf="@+id/button_10"
+        app:layout_constraintEnd_toStartOf="@+id/button_7"
         app:layout_constraintStart_toEndOf="@+id/button_5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_3"
-        app:layout_constraintBottom_toTopOf="@+id/button_9" />
+        app:layout_constraintTop_toBottomOf="@+id/button_2" />
 
     <Button
         android:id="@+id/button_7"
@@ -113,10 +114,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="7: 0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_11"
         app:layout_constraintEnd_toStartOf="@+id/button_8"
-        app:layout_constraintTop_toBottomOf="@+id/button_4"
-        app:layout_constraintBottom_toTopOf="@+id/button_10" />
+        app:layout_constraintStart_toEndOf="@+id/button_6"
+        app:layout_constraintTop_toBottomOf="@+id/button_3" />
 
     <Button
         android:id="@+id/button_8"
@@ -125,10 +126,10 @@
         android:layout_height="0dp"
         android:paddingHorizontal="@dimen/table_row_padding"
         android:text="8: 0"
+        app:layout_constraintBottom_toTopOf="@+id/button_12"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_7"
-        app:layout_constraintEnd_toStartOf="@id/button_9"
-        app:layout_constraintTop_toBottomOf="@+id/button_5"
-        app:layout_constraintBottom_toTopOf="@+id/button_11"/>
+        app:layout_constraintTop_toBottomOf="@+id/button_4" />
 
     <Button
         android:id="@+id/button_9"
@@ -136,10 +137,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="9: 0"
-        app:layout_constraintStart_toEndOf="@id/button_8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_6"
-        app:layout_constraintBottom_toTopOf="@id/button_12" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_5" />
 
     <Button
         android:id="@+id/button_10"
@@ -147,10 +148,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="10: 0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/button_11"
-        app:layout_constraintTop_toBottomOf="@+id/button_7"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toEndOf="@+id/button_9"
+        app:layout_constraintTop_toBottomOf="@+id/button_6" />
 
     <Button
         android:id="@+id/button_11"
@@ -161,7 +162,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_12"
         app:layout_constraintStart_toEndOf="@+id/button_10"
-        app:layout_constraintTop_toBottomOf="@+id/button_8" />
+        app:layout_constraintTop_toBottomOf="@+id/button_7" />
 
     <Button
         android:id="@+id/button_12"
@@ -172,7 +173,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_11"
-        app:layout_constraintTop_toBottomOf="@+id/button_9" />
+        app:layout_constraintTop_toBottomOf="@+id/button_8" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
