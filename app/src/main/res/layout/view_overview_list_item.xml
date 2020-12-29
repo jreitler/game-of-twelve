@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/overview_item_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="@dimen/default_padding"
         android:text="Name"
@@ -16,10 +16,11 @@
 
     <TextView
         android:id="@+id/overview_item_score"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="123"
         android:textSize="@dimen/text_size"
+        android:textAlignment="textEnd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/overview_item_name"/>
 
