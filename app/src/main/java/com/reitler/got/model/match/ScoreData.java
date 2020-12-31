@@ -5,9 +5,6 @@ import com.reitler.got.model.data.entity.ScoreDataEntity;
 
 public class ScoreData {
 
-    public static final int SIZE = 12;
-    public static final int LIMIT = 5;
-
     private ScoreDataEntity entity;
 
     public ScoreData(ScoreDataEntity entity) {
@@ -58,7 +55,7 @@ public class ScoreData {
         }
     }
 
-    public void decrease(int pos){
+    public void decrease(int pos) {
         switch (pos) {
             case 1:
                 entity.setScore1(entity.getScore1() - 1);
@@ -131,14 +128,6 @@ public class ScoreData {
             default:
                 return -1;
         }
-    }
-
-    public int remainingScore() {
-        int result = 0;
-        for (int i = 1; i <= SIZE; i++) {
-            result = result + i * (LIMIT - get(i));
-        }
-        return result;
     }
 
     public ScoreDataEntity getEntity() {

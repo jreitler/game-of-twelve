@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.reitler.got.GotApplication;
+import com.reitler.got.model.ScoreDataUtil;
 import com.reitler.got.model.data.access.MatchDatabase;
 import com.reitler.got.model.match.Match;
 import com.reitler.got.model.match.MatchDataManager;
@@ -50,8 +51,9 @@ public class MatchViewModel extends AndroidViewModel {
 
     private void matchCreated() {
         container.remainingScores.clear();
-        for(Map.Entry<Player, ScoreData> entry : mMatch.getScoreDatas().entrySet()){
-            container.remainingScores.put(entry.getKey(), new MutableLiveData<>(entry.getValue().remainingScore()));
+        for (Map.Entry<Player, ScoreData> entry : mMatch.getScoreDatas().entrySet()) {
+            container.remainingScores.put(entry.getKey(),
+                    new MutableLiveData<>(ScoreDataUtil.getRemainingScore(entry.getValue())));
         }
         container.match.postValue(mMatch);
         mTurn = mMatch.start();
@@ -89,7 +91,7 @@ public class MatchViewModel extends AndroidViewModel {
     }
 
     private void updateScores() {
-        if(mTurn == null){
+        if (mTurn == null) {
             return;
         }
         for (int i = 1; i <= 12; i++) {
@@ -97,10 +99,11 @@ public class MatchViewModel extends AndroidViewModel {
         }
         container.activeNumber.postValue(mTurn.getActiveNumber());
 
-        for(Map.Entry<Player, ScoreData> entry : mMatch.getScoreDatas().entrySet()){
-            container.remainingScores.get(entry.getKey()).postValue(entry.getValue().remainingScore());
+        for (Map.Entry<Player, ScoreData> entry : mMatch.getScoreDatas().entrySet()) {
+            container.remainingScores.get(entry.getKey()).
+                    postValue(ScoreDataUtil.getRemainingScore(entry.getValue()));
         }
-        if(mMatch.isFinalRound() && mMatch.isLastPlayer()){
+        if (mMatch.isFinalRound() && mMatch.isLastPlayer()) {
             container.finalTurn.postValue(Boolean.TRUE);
         } else {
             container.finalTurn.postValue(Boolean.FALSE);
@@ -120,7 +123,7 @@ public class MatchViewModel extends AndroidViewModel {
         return container.scores.get(number - 1);
     }
 
-    public Map<Player, ? extends LiveData<Integer>> getRemainingScores(){
+    public Map<Player, ? extends LiveData<Integer>> getRemainingScores() {
         return container.remainingScores;
     }
 
@@ -128,11 +131,11 @@ public class MatchViewModel extends AndroidViewModel {
         return container.activeNumber;
     }
 
-    public LiveData<Boolean> isFinalTurn(){
+    public LiveData<Boolean> isFinalTurn() {
         return container.finalTurn;
     }
 
-    private class LiveDataContainer{
+    private class LiveDataContainer {
         private MutableLiveData<Match> match = new MutableLiveData<>();
         private MutableLiveData<Turn> turn = new MutableLiveData<>();
         private List<MutableLiveData<Integer>> scores = new ArrayList<>();

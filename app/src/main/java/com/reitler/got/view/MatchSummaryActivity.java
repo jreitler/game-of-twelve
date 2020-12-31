@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.reitler.got.R;
 import com.reitler.got.databinding.ActivityMatchSummaryBinding;
 import com.reitler.got.databinding.ViewSummaryEntryBinding;
+import com.reitler.got.model.ScoreDataUtil;
 import com.reitler.got.model.match.Match;
 import com.reitler.got.model.match.Player;
 import com.reitler.got.model.match.ScoreData;
@@ -152,7 +153,7 @@ public class MatchSummaryActivity extends AppCompatActivity {
             formatCell(entryBinding.summaryEntryScore11, scoreData.get(11));
             formatCell(entryBinding.summaryEntryScore12, scoreData.get(12));
 
-            int remainingScore = scoreData.remainingScore();
+            int remainingScore = ScoreDataUtil.getRemainingScore(scoreData);
             entryBinding.summaryEntryScoreSum.setText(format(remainingScore));
             if (remainingScore == 0) {
                 entryBinding.summaryEntryScoreSum.setBackgroundColor(getColor(R.color.green));

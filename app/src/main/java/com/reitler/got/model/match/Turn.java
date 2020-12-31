@@ -1,11 +1,11 @@
 package com.reitler.got.model.match;
 
+import com.reitler.got.model.ScoreDataUtil;
+
 import java.util.LinkedList;
 import java.util.List;
 
 public class Turn {
-
-    private static final int LIMIT = 5;
 
     private Player player;
     private ScoreData scoreData;
@@ -23,14 +23,14 @@ public class Turn {
     }
 
     public void singleScore(int score) {
-       score(score, 1);
+        score(score, 1);
     }
 
-    public void complete(int score){
+    public void complete(int score) {
         score(score, 5 - scoreData.get(score));
     }
 
-    private void score(int score, int count){
+    private void score(int score, int count) {
         if (isCompleted(score)) {
             // TODO: throw error?
             return;
@@ -51,8 +51,8 @@ public class Turn {
         }
     }
 
-    public void revertLast(){
-        if(history.isEmpty()){
+    public void revertLast() {
+        if (history.isEmpty()) {
             return;
         }
         Action action = this.history.remove(history.size() - 1);
@@ -68,19 +68,10 @@ public class Turn {
     }
 
     private boolean isCompleted(int pos) {
-        return scoreData.get(pos) == LIMIT;
+        return ScoreDataUtil.isCompleted(scoreData, pos);
     }
 
-    public boolean isCompleted() {
-        for (int i = 1; i <= ScoreData.SIZE; i++) {
-            if (!isCompleted(i)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public ScoreData getScoreData(){
+    public ScoreData getScoreData() {
         return this.scoreData;
     }
 

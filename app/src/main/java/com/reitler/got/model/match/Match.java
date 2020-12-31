@@ -1,5 +1,6 @@
 package com.reitler.got.model.match;
 
+import com.reitler.got.model.ScoreDataUtil;
 import com.reitler.got.model.data.entity.MatchEntity;
 import com.reitler.got.model.data.entity.ScoreDataEntity;
 
@@ -95,7 +96,7 @@ public class Match {
 
     public boolean isFinalRound() {
         for(Map.Entry<Player, ScoreData> entry : matchData.entrySet()){
-            if(entry.getValue().remainingScore() == 0){
+            if(ScoreDataUtil.getRemainingScore(entry.getValue()) == 0){
                 return true;
             }
         }

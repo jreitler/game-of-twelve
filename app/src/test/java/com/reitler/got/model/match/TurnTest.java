@@ -38,7 +38,6 @@ public class TurnTest {
 
     @Test
     public void testIncompleteTurn(){
-        assertFalse(t.isCompleted());
 
         for(int i = 1; i < 10; i++){
             for(int j = 0; j < 5; j++){
@@ -46,7 +45,7 @@ public class TurnTest {
             }
         }
 
-        assertFalse(t.isCompleted());
+
         assertEquals(5, data.get(1));
         assertEquals(5, data.get(2));
         assertEquals(5, data.get(3));
@@ -62,22 +61,7 @@ public class TurnTest {
     }
 
     @Test
-    public void testCompleteTurn() {
-        assertFalse(t.isCompleted());
-
-        for (int i = 1; i <= 12; i++) {
-            for (int j = 0; j < 5; j++) {
-                t.singleScore(i);
-            }
-        }
-
-        assertTrue(t.isCompleted());
-    }
-
-    @Test
     public void testTurnRevertSingleScores(){
-
-        assertFalse(t.isCompleted());
 
         for (int i = 1; i <= 12; i++) {
             for (int j = 0; j < 5; j++) {
@@ -86,7 +70,6 @@ public class TurnTest {
         }
         t.revertLast();
 
-        assertFalse(t.isCompleted());
         assertEquals(5, data.get(1));
         assertEquals(5, data.get(2));
         assertEquals(5, data.get(3));
