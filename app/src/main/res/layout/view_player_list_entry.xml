@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true">
+    tools:viewBindingIgnore="true"
+    android:padding="@dimen/player_selection_recyclerview_margin_items">
 
     <TextView
         android:id="@+id/textview_player_name"
