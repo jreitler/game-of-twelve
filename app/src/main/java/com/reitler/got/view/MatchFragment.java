@@ -75,7 +75,7 @@ public class MatchFragment extends Fragment {
         viewModel.getTurn().observe(getViewLifecycleOwner(), new Observer<Turn>() {
             @Override
             public void onChanged(Turn turn) {
-                if(turn == null){
+                if (turn == null) {
                     return;
                 }
                 binding.gamePlayerName.setText(turn.getPlayer().getName());
@@ -108,7 +108,7 @@ public class MatchFragment extends Fragment {
         viewModel.isFinalTurn().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean finalTurn) {
-                if(finalTurn){
+                if (finalTurn) {
                     binding.buttonNextPlayer.setText(R.string.button_end_game);
                 } else {
                     binding.buttonNextPlayer.setText(R.string.button_next_player);
@@ -157,7 +157,8 @@ public class MatchFragment extends Fragment {
             @Override
             public void onChanged(Integer integer) {
                 int value = integer != null ? integer.intValue() : 0;
-                button.setText(String.format("%2d (%d)", index, value));
+                String text = value == 5 ? String.format("%2d", index) : String.format("%2d (%d)", index, 5 - value);
+                button.setText(text);
             }
         };
     }
