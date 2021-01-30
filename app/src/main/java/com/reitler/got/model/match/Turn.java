@@ -57,6 +57,14 @@ public class Turn {
         }
         Action action = this.history.remove(history.size() - 1);
         action.revert();
+        if(!history.isEmpty()){
+            this.activeNumber = history.get(history.size()-1).score;
+            if(isCompleted(this.activeNumber)){
+                this.activeNumber = null;
+            }
+        }else {
+            this.activeNumber = null;
+        }
     }
 
     private boolean isCompleted(int pos) {
