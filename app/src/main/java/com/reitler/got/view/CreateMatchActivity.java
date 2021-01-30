@@ -78,8 +78,6 @@ public class CreateMatchActivity extends AppCompatActivity {
                 }
             }
         });
-
-        viewModel.loadPlayers();
     }
 
     private void startGameActivity() {

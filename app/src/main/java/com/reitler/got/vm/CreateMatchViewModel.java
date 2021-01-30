@@ -38,7 +38,10 @@ public class CreateMatchViewModel extends AndroidViewModel {
                 new PlayerManager(((GotApplication) application).matchDataBase.getPlayerDao());
         this.matchDataManager =
                 new MatchDataManager(((GotApplication) application).matchDataBase);
+
+        loadPlayers();
     }
+
 
     public LiveData<List<Player>> getAvailablePlayers() {
         return this.container.availablePlayers;
@@ -48,7 +51,7 @@ public class CreateMatchViewModel extends AndroidViewModel {
         return this.container.selectedPlayers;
     }
 
-    public void loadPlayers() {
+    private void loadPlayers() {
         executor.execute(() -> {
             availablePlayers.addAll(playerManager.getAllPlayer());
             updatePlayers(true);
