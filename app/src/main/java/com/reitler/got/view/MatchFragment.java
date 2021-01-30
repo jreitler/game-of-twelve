@@ -1,6 +1,5 @@
 package com.reitler.got.view;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -95,12 +93,9 @@ public class MatchFragment extends Fragment {
         viewModel.getActiveNumber().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                if (integer == null) {
-                    buttons.forEach(b -> b.setEnabled(true));
-                } else {
-                    for (int i = 1; i <= 12; i++) {
-                        buttons.get(i - 1).setEnabled(i == integer.intValue());
-                    }
+                for (int i = 1; i <= 12; i++) {
+                    Integer value = viewModel.getScore(i).getValue();
+                    updateButton(buttons.get(i -1), value != null ? value.intValue() : 0);
                 }
             }
         });
@@ -157,9 +152,27 @@ public class MatchFragment extends Fragment {
             @Override
             public void onChanged(Integer integer) {
                 int value = integer != null ? integer.intValue() : 0;
-                String text = value == 5 ? String.format("%2d", index) : String.format("%2d (%d)", index, 5 - value);
-                button.setText(text);
+                updateButton(button, value);
             }
         };
+    }
+
+    private void updateButton(Button b, int value) {
+        int activeNumber = viewModel.getActiveNumber().getValue() != null ? viewModel.getActiveNumber().getValue() : 0;
+        int index = this.buttons.indexOf(b) + 1;
+        boolean active = activeNumber == 0 || activeNumber == index;
+        String text = value == 5 ? String.format("%2d", index) : String.format("%2d (%d)", index, 5 - value);
+
+        b.setEnabled(active);
+        if (value == 5) {
+            b.setBackgroundColor(requireActivity().getColor(R.color.green));
+        } else {
+            if (active) {
+                b.setBackgroundColor(requireActivity().getColor(R.color.purple_700));
+            } else {
+                b.setBackgroundColor(requireActivity().getColor(R.color.button_disabled));
+            }
+        }
+        b.setText(text);
     }
 }
