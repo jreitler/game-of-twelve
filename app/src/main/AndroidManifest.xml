@@ -5,15 +5,16 @@
     <application
         android:name=".GotApplication"
         android:allowBackup="true"
+        android:configChanges="orientation"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GameOfTwelve"
-        android:configChanges="orientation">
+        android:theme="@style/Theme.GameOfTwelve">
+        <activity android:name=".view.statistics.StatisticsActivity"></activity>
         <activity android:name=".view.MatchActivity" />
-        <activity android:name=".view.CreateMatchActivity"/>
-        <activity android:name=".view.MatchSummaryActivity"/>
+        <activity android:name=".view.CreateMatchActivity" />
+        <activity android:name=".view.MatchSummaryActivity" />
         <activity android:name=".view.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

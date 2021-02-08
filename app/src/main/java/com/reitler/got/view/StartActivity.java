@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.reitler.got.databinding.ActivityStartBinding;
 import com.reitler.got.model.match.Match;
+import com.reitler.got.view.statistics.StatisticsActivity;
 import com.reitler.got.vm.StartViewModel;
 
 public class StartActivity extends AppCompatActivity {
@@ -28,6 +29,8 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(new Intent(StartActivity.this, CreateMatchActivity.class)));
         binding.buttonLoadGame.setOnClickListener(listener ->
                 startActivity(new Intent(StartActivity.this, MatchActivity.class)));
+        binding.buttonStatistics.setOnClickListener(listener ->
+                startActivity(new Intent(StartActivity.this, StatisticsActivity.class)));
 
         this.viewModel.getOpenMatch().observe(this, new Observer<Match>() {
             @Override

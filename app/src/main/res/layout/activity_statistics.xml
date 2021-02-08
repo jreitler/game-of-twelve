@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.statistics.StatisticsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/statistics_time_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/statistics_player_table_scroll"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/statistics_label_time_caption"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingTop="@dimen/default_margin"
+            android:text="@string/statistics_label_time_caption"
+            android:textSize="@dimen/text_size"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/statistics_label_time_start"
+            app:layout_constraintHorizontal_weight="10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/statistics_label_time_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/default_margin"
+            android:text="@string/statistics_label_time_start"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/statistics_date_start"
+            app:layout_constraintStart_toEndOf="@id/statistics_label_time_caption"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/statistics_date_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/default_margin"
+            android:clickable="true"
+            android:ems="5"
+            android:focusable="false"
+            android:inputType="date"
+            android:maxEms="5"
+            android:layout_marginEnd="@dimen/default_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/statistics_label_time_end"
+            app:layout_constraintStart_toEndOf="@id/statistics_label_time_start"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/statistics_label_time_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:paddingTop="@dimen/default_margin"
+            android:text="@string/statistics_label_time_end"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/statistics_date_end"
+            app:layout_constraintStart_toEndOf="@id/statistics_date_start"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/statistics_date_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/default_margin"
+            android:clickable="true"
+            android:ems="5"
+            android:focusable="false"
+            android:inputType="date"
+            android:maxEms="5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/statistics_label_time_spacing_right"
+            app:layout_constraintStart_toEndOf="@id/statistics_label_time_end"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/statistics_label_time_spacing_right"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingTop="@dimen/default_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="10"
+            app:layout_constraintStart_toEndOf="@id/statistics_date_end"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/statistics_player_table_scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/statistics_time_container">
+
+        <TableLayout
+            android:id="@+id/statistics_player_table"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

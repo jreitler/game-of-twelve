@@ -3,14 +3,15 @@
     <string name="undo">Rückgängig</string>
     <string name="button_next_player">Nächster Spieler</string>
     <string name="overview">Übersicht</string>
-    <string name="button_load_game">Letztes Spiel laden</string>
+    <string name="button_load_game">Spiel fortsetzen</string>
+    <string name="button_statistics">Statistik</string>
     <string name="button_create_new_game">Neues Spiel erstellen</string>
     <string name="button_start_game">Spiel starten</string>
     <string name="button_create_user">Spieler erstellen</string>
     <string name="button_end_game">Spiel beenden</string>
     <string name="available_players">Verfügbare Spieler</string>
     <string name="selected_players">Ausgewählte Spieler</string>
-    
+
     <string name="summary_header">Spielende</string>
     <string name="summary_table_header_name">Spieler</string>
     <string name="summary_table_header_score1"> 1</string>
@@ -46,4 +47,19 @@
     <string name="player_dialog_header">Name:</string>
     <string name="message_player_name_duplicate">Dieser Name ist bereits vergeben.</string>
     <string name="hint_player_name">Bitte einen Namen eingeben</string>
+
+    <string name="statistics_header">Statistik</string>
+    <string name="statistics_date_format">dd.MM.yyyy</string>
+    <string name="statistics_date_clear">Löschen</string>
+    <string name="statistics_label_time_caption">Zeitraum</string>
+    <string name="statistics_label_time_start">Von:</string>
+    <string name="statistics_label_time_end">Bis:</string>
+
+    <string name="statistics_table_header_name">Spieler</string>
+    <string name="statistics_table_header_match_count">Spiele</string>
+    <string name="statistics_table_header_win_count">Siege</string>
+    <string name="statistics_table_header_max_remains">Punkte max.</string>
+    <string name="statistics_table_header_avg_remains">Punkte \u00D8</string>
+    <string name="statistics_table_header_total_remains">Punkte abs.</string>
+    <string name="statistics_table_name_overall">Gesamt</string>
 </resources>
