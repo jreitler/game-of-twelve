@@ -41,24 +41,28 @@ class StatisticsActivity : AppCompatActivity() {
         binding.statisticsDateStart.setOnClickListener {
             val initialDate = viewModel.startDate.value ?: viewModel.firstMatchStart.value!!
             pickDate({ d -> viewModel.setStart(d) }, initialDate, viewModel.firstMatchStart.value?.time
-                    ?: Date().time, Date().time)
+                    ?: Date().time, Date().time, false)
         }
 
         binding.statisticsDateEnd.setOnClickListener {
             val minDate = viewModel.startDate.value ?: viewModel.firstMatchStart.value
             val initialDate = viewModel.endDate.value ?: Date()
-            // TODO: limit minDate, if startDate is selected
             pickDate({ d -> viewModel.setEnd(d) }, initialDate, minDate?.time
-                    ?: Date().time, Date().time)
+                    ?: Date().time, Date().time, true)
         }
 
         supportActionBar!!.title = resources.getString(R.string.statistics_header)
     }
 
-    private fun pickDate(callback: DatePickedCallback, initialDate: Date, minDate: Long, maxDate: Long) {
+    private fun pickDate(callback: DatePickedCallback, initialDate: Date, minDate: Long, maxDate: Long, endOfDay: Boolean) {
         val dateSetListener = DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
             val c = Calendar.getInstance()
-            c.set(year, month, dayOfMonth)
+            if(endOfDay){
+                c.set(year, month, dayOfMonth, 23, 59)
+            }
+            else {
+                c.set(year, month, dayOfMonth, 0, 0)
+            }
             callback.datePicked(c.time)
         }
         val c = Calendar.getInstance()
