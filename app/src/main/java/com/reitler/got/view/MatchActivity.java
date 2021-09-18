@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.reitler.got.R;
 
-public class MatchActivity extends AppCompatActivity {
+public class MatchActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

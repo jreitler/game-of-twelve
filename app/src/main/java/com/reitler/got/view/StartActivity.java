@@ -12,7 +12,7 @@ import com.reitler.got.model.match.Match;
 import com.reitler.got.view.statistics.StatisticsActivity;
 import com.reitler.got.vm.StartViewModel;
 
-public class StartActivity extends AppCompatActivity {
+public class StartActivity extends BaseActivity {
 
     private ActivityStartBinding binding;
     private StartViewModel viewModel;

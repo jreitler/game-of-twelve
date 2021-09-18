@@ -23,7 +23,7 @@ import com.reitler.got.vm.CreateMatchViewModel;
 import java.util.List;
 import java.util.Set;
 
-public class CreateMatchActivity extends AppCompatActivity {
+public class CreateMatchActivity extends BaseActivity {
 
     private ActivityCreateMatchBinding binding;
     private CreateMatchViewModel viewModel;

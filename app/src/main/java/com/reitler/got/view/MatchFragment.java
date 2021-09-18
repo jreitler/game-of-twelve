@@ -2,6 +2,7 @@ package com.reitler.got.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -168,11 +169,12 @@ public class MatchFragment extends Fragment {
             b.setBackgroundColor(requireActivity().getColor(R.color.green));
         } else {
             if (active) {
-                b.setBackgroundColor(requireActivity().getColor(R.color.purple_700));
+                b.setBackgroundColor(requireActivity().getColor(R.color.purple_500));
             } else {
                 b.setBackgroundColor(requireActivity().getColor(R.color.button_disabled));
             }
         }
         b.setText(text);
     }
+
 }

@@ -24,7 +24,7 @@ import com.reitler.got.vm.MatchSummaryViewModel;
 import java.util.Map;
 
 
-public class MatchSummaryActivity extends AppCompatActivity {
+public class MatchSummaryActivity extends BaseActivity {
 
     public static String EXTRA_MATCH_ID = "com.reitler.got.view.MatchSummaryActivity.matchId";
 
