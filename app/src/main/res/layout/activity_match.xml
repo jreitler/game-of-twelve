@@ -8,7 +8,7 @@
     tools:viewBindingIgnore="true">
 
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_overview"
         android:name="com.reitler.got.view.MatchOverviewFragment"
         android:layout_width="wrap_content"
@@ -19,7 +19,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_margin="@dimen/default_margin" />
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_game"
         android:name="com.reitler.got.view.MatchFragment"
         android:layout_width="0dp"

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GameOfTwelve">
-        <activity android:name=".view.statistics.StatisticsActivity"></activity>
+        <activity android:name=".view.MatchSummaryDialogActivity" android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar"/>
+        <activity android:name=".view.statistics.StatisticsActivity" />
         <activity android:name=".view.MatchActivity" />
         <activity android:name=".view.CreateMatchActivity" />
         <activity android:name=".view.MatchEndActivity" />
