@@ -14,7 +14,7 @@
         <activity android:name=".view.statistics.StatisticsActivity"></activity>
         <activity android:name=".view.MatchActivity" />
         <activity android:name=".view.CreateMatchActivity" />
-        <activity android:name=".view.MatchSummaryActivity" />
+        <activity android:name=".view.MatchEndActivity" />
         <activity android:name=".view.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

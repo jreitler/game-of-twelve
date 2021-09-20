@@ -2,7 +2,6 @@ package com.reitler.got.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -114,8 +113,8 @@ public class MatchFragment extends Fragment {
     }
 
     private void onFinishButton() {
-        Intent intent = new Intent(requireContext(), MatchSummaryActivity.class);
-        intent.putExtra(MatchSummaryActivity.EXTRA_MATCH_ID, viewModel.getMatch().getValue().getId());
+        Intent intent = new Intent(requireContext(), MatchEndActivity.class);
+        intent.putExtra(MatchEndActivity.EXTRA_MATCH_ID, viewModel.getMatch().getValue().getId());
         startActivity(intent);
     }
 

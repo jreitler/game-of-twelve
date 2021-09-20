@@ -15,10 +15,9 @@ import com.reitler.got.model.match.Player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 
-public class MatchSummaryViewModel  extends AndroidViewModel {
+public class MatchSummaryViewModel extends AndroidViewModel {
 
     private ExecutorService executor;
     private final MatchDataManager dataManager;
@@ -32,12 +31,18 @@ public class MatchSummaryViewModel  extends AndroidViewModel {
         this.dataManager = new MatchDataManager(matchDataBase);
     }
 
-    public void init(long matchId){
+    public void init(long matchId) {
         if (matchId < 0) {
             throw new IllegalArgumentException("Illegal Match Id passed");
         }
         executor.execute(() -> {
-            this.match .postValue(dataManager.getMatch(matchId));
+            this.match.postValue(dataManager.getMatch(matchId));
+        });
+    }
+
+    public void initOpenMatch() {
+        executor.execute(() -> {
+            this.match.postValue(dataManager.getOpenMatch());
         });
     }
 
@@ -45,7 +50,7 @@ public class MatchSummaryViewModel  extends AndroidViewModel {
         return match;
     }
 
-    public void rematch(Runnable callback){
+    public void rematch(Runnable callback) {
         executor.execute(() -> {
             List<Player> players = new ArrayList<>(match.getValue().getScoreDatas().keySet());
             Player firstPlayer = players.remove(0);

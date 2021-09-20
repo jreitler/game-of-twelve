@@ -152,7 +152,7 @@
         android:id="@+id/summary_entry_score_sum"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="3"
         android:text="@string/summary_table_header_sum"
         android:textAlignment="center"
         android:textSize="@dimen/text_size"

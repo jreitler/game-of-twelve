@@ -1,19 +1,19 @@
 package com.reitler.got.view;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.reitler.got.R;
-import com.reitler.got.databinding.ActivityMatchSummaryBinding;
+import com.reitler.got.databinding.FragmentMatchSummaryBinding;
 import com.reitler.got.databinding.ViewSummaryEntryBinding;
 import com.reitler.got.model.ScoreDataUtil;
 import com.reitler.got.model.match.Match;
@@ -23,67 +23,33 @@ import com.reitler.got.vm.MatchSummaryViewModel;
 
 import java.util.Map;
 
+public class MatchSummaryFragment extends Fragment {
 
-public class MatchSummaryActivity extends BaseActivity {
-
-    public static String EXTRA_MATCH_ID = "com.reitler.got.view.MatchSummaryActivity.matchId";
-
+    private FragmentMatchSummaryBinding binding;
     private MatchSummaryViewModel viewModel;
-    private ActivityMatchSummaryBinding binding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.binding = ActivityMatchSummaryBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        setHeader(binding.summaryTable);
-        viewModel = new ViewModelProvider(this).get(MatchSummaryViewModel.class);
-        long matchID = getIntent().getLongExtra(EXTRA_MATCH_ID, -1l);
-        if (matchID >= 0) {
-            viewModel.init(matchID);
-        }
+        this.viewModel = new ViewModelProvider(requireActivity()).get(MatchSummaryViewModel.class);
+        requireActivity();
+    }
 
-        viewModel.getMatch().observe(this, new Observer<Match>() {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        this.binding = FragmentMatchSummaryBinding.inflate(getLayoutInflater(), container, false);
+
+        setHeader(binding.summaryTable);
+
+        viewModel.getMatch().observe(requireActivity(), new Observer<Match>() {
             @Override
             public void onChanged(Match match) {
                 setData(match);
             }
         });
-
-        this.binding.buttonBackToMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                backToMenu();
-            }
-        });
-
-        this.binding.buttonRematch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rematch();
-            }
-        });
-    }
-
-    @Override
-    public void onBackPressed() {
-        //
-    }
-
-    private void backToMenu(){
-        Intent intent = new Intent(this, StartActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-    }
-
-    private void rematch(){
-        this.viewModel.rematch(() -> {
-            getMainExecutor().execute( () -> {
-                Intent intent = new Intent(this, MatchActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            });
-        });
+        return this.binding.getRoot();
     }
 
     private void setHeader(TableLayout table) {
@@ -129,7 +95,7 @@ public class MatchSummaryActivity extends BaseActivity {
 
         // first, remove all table rows that might be present already
         int childCount = summaryTable.getChildCount();
-        for(int i = childCount -1; i > 0; i--){
+        for (int i = childCount - 1; i > 0; i--) {
             summaryTable.removeView(summaryTable.getChildAt(i));
         }
 
@@ -156,20 +122,22 @@ public class MatchSummaryActivity extends BaseActivity {
             int remainingScore = ScoreDataUtil.getRemainingScore(scoreData);
             entryBinding.summaryEntryScoreSum.setText(format(remainingScore));
             if (remainingScore == 0) {
-                entryBinding.summaryEntryScoreSum.setBackgroundColor(getColor(R.color.green));
+                entryBinding.summaryEntryScoreSum.setBackgroundColor(requireActivity().getColor(R.color.green));
             }
             summaryTable.addView(entryBinding.getRoot());
         }
     }
 
+
     private void formatCell(TextView cell, int score) {
         cell.setText(format(score));
         if (score == 5) {
-            cell.setBackgroundColor(getColor(R.color.green));
+            cell.setBackgroundColor(requireActivity().getColor(R.color.green));
         }
     }
 
     private String format(int score) {
         return String.format("%3d", score);
     }
+
 }
