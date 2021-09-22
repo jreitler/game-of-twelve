@@ -50,8 +50,6 @@ class StatisticsActivity : AppCompatActivity() {
             pickDate({ d -> viewModel.setEnd(d) }, initialDate, minDate?.time
                     ?: Date().time, Date().time, true)
         }
-
-        supportActionBar!!.title = resources.getString(R.string.statistics_header)
     }
 
     private fun pickDate(callback: DatePickedCallback, initialDate: Date, minDate: Long, maxDate: Long, endOfDay: Boolean) {

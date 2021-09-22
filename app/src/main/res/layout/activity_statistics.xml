@@ -14,6 +14,19 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/statistics_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/statistics_header"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/statistics_label_time_caption"
+            />
+
+        <TextView
             android:id="@+id/statistics_label_time_caption"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -25,7 +38,7 @@
             app:layout_constraintEnd_toStartOf="@id/statistics_label_time_start"
             app:layout_constraintHorizontal_weight="10"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/statistics_header" />
 
         <TextView
             android:id="@+id/statistics_label_time_start"
@@ -37,7 +50,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/statistics_date_start"
             app:layout_constraintStart_toEndOf="@id/statistics_label_time_caption"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/statistics_header"/>
 
         <EditText
             android:id="@+id/statistics_date_start"
@@ -53,7 +66,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/statistics_label_time_end"
             app:layout_constraintStart_toEndOf="@id/statistics_label_time_start"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/statistics_header" />
 
         <TextView
             android:id="@+id/statistics_label_time_end"
@@ -66,7 +79,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/statistics_date_end"
             app:layout_constraintStart_toEndOf="@id/statistics_date_start"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/statistics_header" />
 
         <EditText
             android:id="@+id/statistics_date_end"
@@ -81,7 +94,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/statistics_label_time_spacing_right"
             app:layout_constraintStart_toEndOf="@id/statistics_label_time_end"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/statistics_header"/>
 
         <View
             android:id="@+id/statistics_label_time_spacing_right"
@@ -92,7 +105,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_weight="10"
             app:layout_constraintStart_toEndOf="@id/statistics_date_end"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/statistics_header" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
