@@ -1,7 +1,5 @@
 package com.reitler.got.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 import com.reitler.got.R;

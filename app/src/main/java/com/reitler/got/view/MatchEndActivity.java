@@ -1,25 +1,13 @@
 package com.reitler.got.view;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TableLayout;
-import android.widget.TextView;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.reitler.got.R;
 import com.reitler.got.databinding.ActivityMatchEndBinding;
-import com.reitler.got.databinding.ViewSummaryEntryBinding;
-import com.reitler.got.model.ScoreDataUtil;
-import com.reitler.got.model.match.Match;
-import com.reitler.got.model.match.Player;
-import com.reitler.got.model.match.ScoreData;
 import com.reitler.got.vm.MatchSummaryViewModel;
-
-import java.util.Map;
 
 
 public class MatchEndActivity extends BaseActivity {

@@ -5,21 +5,20 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.DatePicker
 import android.widget.TableLayout
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.reitler.got.R
 import com.reitler.got.databinding.ActivityStatisticsBinding
 import com.reitler.got.databinding.ViewStatisticsEntryBinding
 import com.reitler.got.databinding.ViewStatisticsHeaderBinding
-import com.reitler.got.model.statistics.MatchStatistics
 import com.reitler.got.model.statistics.PlayerStatistic
+import com.reitler.got.view.BaseActivity
 import com.reitler.got.vm.StatisticsViewModel
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class StatisticsActivity : AppCompatActivity() {
+class StatisticsActivity : BaseActivity() {
     private lateinit var binding: ActivityStatisticsBinding
     private lateinit var viewModel: StatisticsViewModel
     private lateinit var dateFormat: DateFormat
