@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.reitler.got.databinding.ActivityMatchEndBinding;
+import com.reitler.got.view.statistics.StatisticsActivity;
 import com.reitler.got.vm.MatchSummaryViewModel;
 
 
@@ -41,6 +42,9 @@ public class MatchEndActivity extends BaseActivity {
                 rematch();
             }
         });
+
+        this.binding.buttonStatistics.setOnClickListener(listener ->
+                startActivity(new Intent(this, StatisticsActivity.class)));
     }
 
     @Override

@@ -29,6 +29,15 @@
         app:layout_constraintBottom_toTopOf="@id/button_rematch"/>
 
     <Button
+        android:id="@+id/button_statistics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:text="@string/button_statistics"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_rematch"/>
+
+    <Button
         android:id="@+id/button_back_to_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
