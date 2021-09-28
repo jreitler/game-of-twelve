@@ -2,7 +2,7 @@
     <string name="app_name">12er-Spiel</string>
     <string name="undo">Rückgängig</string>
     <string name="button_next_player">Weiter</string>
-    <string name="overview">Übersicht</string>
+    <string name="overview"><a href="">Übersicht</a></string>
     <string name="button_load_game">Spiel fortsetzen</string>
     <string name="button_statistics">Statistik</string>
     <string name="button_create_new_game">Neues Spiel erstellen</string>
