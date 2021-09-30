@@ -22,7 +22,7 @@ public interface MatchDao {
     @Query("SELECT * from t_match")
     List<MatchEntity> getAllMatches();
 
-    @Query("SELECT * from t_match WHERE start_date>=:fromDate AND start_date<=:toDate")
+    @Query("SELECT * from t_match WHERE start_date>=:fromDate AND start_date<=:toDate AND end_date >= 0")
     List<MatchEntity> getMatches(Date fromDate, Date toDate);
 
     @Query("SELECT * from t_match WHERE match_id=:matchId")
