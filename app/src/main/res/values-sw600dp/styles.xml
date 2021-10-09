@@ -8,9 +8,9 @@
         <item name="android:layout_margin">@dimen/match_button_margin</item>
     </style>
 
-    <style name="GotDatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog.MinWidth">
+    <style name="GotDatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
         <item name="android:datePickerStyle">@style/GotDatePickerStyle</item>
-        <item name="android:layout_margin">@dimen/statistics_date_picker_margins</item>
+        <item name="android:layout_margin">@dimen/reduced_margin</item>
     </style>
 
     <style name="GotDatePickerStyle" parent="@android:style/Widget.Material.DatePicker">

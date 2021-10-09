@@ -32,7 +32,6 @@ public class MatchSummaryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.viewModel = new ViewModelProvider(requireActivity()).get(MatchSummaryViewModel.class);
-        requireActivity();
     }
 
     @Override

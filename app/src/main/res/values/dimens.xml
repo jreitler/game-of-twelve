@@ -10,6 +10,7 @@
     <dimen name="match_button_radius">10dp</dimen>
     <dimen name="default_margin">16sp</dimen>
     <dimen name="reduced_margin">10sp</dimen>
+    <dimen name="statistics_date_picker_margins">1dp</dimen>
     <dimen name="row_height">18dp</dimen>
     <dimen name="player_selection_recyclerview_margin_top">25dp</dimen>
     <dimen name="player_selection_recyclerview_margin_items">15dp</dimen>
