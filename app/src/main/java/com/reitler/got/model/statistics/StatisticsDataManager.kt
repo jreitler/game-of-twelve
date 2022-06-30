@@ -1,6 +1,5 @@
 package com.reitler.got.model.statistics
 
-import android.util.Log
 import com.reitler.got.model.ScoreDataUtil
 import com.reitler.got.model.data.access.MatchDatabase
 import com.reitler.got.model.data.entity.MatchEntity

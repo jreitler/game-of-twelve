@@ -15,15 +15,15 @@
 
         <TextView
             android:id="@+id/statistics_header"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="@string/statistics_header"
             android:textAlignment="center"
             android:textSize="@dimen/text_size_title"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/statistic_import"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/statistics_label_time_caption"
+            app:layout_constraintEnd_toStartOf="@id/statistic_export"
+            app:layout_constraintBottom_toTopOf="@+id/statistics_label_time_caption"
             />
 
         <TextView
@@ -38,7 +38,7 @@
             app:layout_constraintEnd_toStartOf="@id/statistics_label_time_start"
             app:layout_constraintHorizontal_weight="10"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/statistics_header" />
+            app:layout_constraintTop_toBottomOf="@id/statistic_import" />
 
         <TextView
             android:id="@+id/statistics_label_time_start"
@@ -106,6 +106,28 @@
             app:layout_constraintHorizontal_weight="10"
             app:layout_constraintStart_toEndOf="@id/statistics_date_end"
             app:layout_constraintTop_toBottomOf="@id/statistics_header" />
+
+        <Button
+            android:id="@+id/statistic_export"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:text="@string/statistics_export"
+            app:layout_constraintBottom_toTopOf="@+id/statistics_label_time_caption"
+            app:layout_constraintStart_toEndOf="@id/statistics_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/statistic_import"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:text="@string/statistics_import"
+            app:layout_constraintBottom_toTopOf="@+id/statistics_label_time_caption"
+            app:layout_constraintEnd_toStartOf="@id/statistics_header"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
