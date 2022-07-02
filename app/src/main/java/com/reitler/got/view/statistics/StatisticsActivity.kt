@@ -3,6 +3,7 @@ package com.reitler.got.view.statistics
 import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
 import android.widget.DatePicker
@@ -39,13 +40,9 @@ class StatisticsActivity : BaseActivity() {
 
         viewModel = ViewModelProvider(this).get(StatisticsViewModel::class.java)
 
-        viewModel.startDate.observe(
-            this,
-            { binding.statisticsDateStart.setText(if (null != it) dateFormat.format(it) else "") })
-        viewModel.endDate.observe(
-            this,
-            { binding.statisticsDateEnd.setText(if (null != it) dateFormat.format(it) else "") })
-        viewModel.playerStatistics.observe(this, { setPlayerStatistics(it) })
+        viewModel.startDate.observe(this) { binding.statisticsDateStart.setText(if (null != it) dateFormat.format(it) else "") }
+        viewModel.endDate.observe( this,)   { binding.statisticsDateEnd.setText(if (null != it) dateFormat.format(it) else "") }
+        viewModel.playerStatistics.observe(this) { setPlayerStatistics(it) }
 
         binding.statisticsDateStart.setOnClickListener {
             val initialDate = viewModel.startDate.value ?: viewModel.firstMatchStart.value!!
@@ -101,14 +98,7 @@ class StatisticsActivity : BaseActivity() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.addCategory(Intent.CATEGORY_OPENABLE)
         intent.type = "text/plain"
-        intent.putExtra(Intent.EXTRA_TITLE, "got_export.txt")
-
-        // Optionally, specify a URI for the directory that should be opened in
-        // the system file picker when your app creates the document.
-
-        // Optionally, specify a URI for the directory that should be opened in
-        // the system file picker when your app creates the document.
-        //intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri)
+        intent.putExtra(Intent.EXTRA_TITLE, resources.getString(R.string.statistics_default_file_name))
 
         startActivityForResult(intent, REQUEST_CODE_READ_FILE)
 
@@ -119,15 +109,8 @@ class StatisticsActivity : BaseActivity() {
         val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
         intent.addCategory(Intent.CATEGORY_OPENABLE)
         intent.type = "text/plain"
-        intent.putExtra(Intent.EXTRA_TITLE, "got_export.txt")
-
-        // Optionally, specify a URI for the directory that should be opened in
-        // the system file picker when your app creates the document.
-
-        // Optionally, specify a URI for the directory that should be opened in
-        // the system file picker when your app creates the document.
-        //intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri)
-
+        intent.putExtra(Intent.EXTRA_TITLE, resources.getString(R.string.statistics_default_file_name))
+        
         startActivityForResult(intent, REQUEST_CODE_CREATE_FILE)
 
     }

@@ -21,12 +21,12 @@ import java.util.concurrent.ExecutorService
 class StatisticsViewModel(application: Application) : AndroidViewModel(application) {
     private val executor: ExecutorService
     private val dataManager: StatisticsDataManager
+    private val importExport: ImportExport
     val matches = MutableLiveData<MatchStatistics>()
     val firstMatchStart = MutableLiveData<Date>()
     val startDate = MutableLiveData<Date>()
     val endDate = MutableLiveData<Date>()
     val playerStatistics = MutableLiveData<List<PlayerStatistic>>()
-    val importExport: ImportExport
 
     init {
         val matchDataBase = (application as GotApplication).matchDataBase
